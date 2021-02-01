@@ -1,7 +1,10 @@
-const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 const csrf = require('csurf');
+
+const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 const csrfProtection = csrf({ cookie: true });
 const { check, validationResult } = require('express-validator');
+
+
 const errorHandler = (req, res, next) => {
     const validationErrors = validationResult(req);
     if (!validationErrors.isEmpty()){
@@ -26,9 +29,9 @@ const userValidator = [
         .withMessage('Invalid Email Address'),
     check('password')
         .exists({ checkFalsy: true })
-        .isStrongPassword() 
-        .withMessage("Password Doesn't Meet Requirements")
+        .isStrongPassword()
+        .withMessage("Password Doesn't Meet Requirements"),
 ];
 
 
-module.exports = asyncHandler, csrfProtection;
+module.exports = asyncHandler, csrfProtection, userValidator, errorHandler;
