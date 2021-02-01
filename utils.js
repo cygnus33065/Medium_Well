@@ -29,9 +29,9 @@ const userValidator = [
         .withMessage('Invalid Email Address'),
     check('password')
         .exists({ checkFalsy: true })
-        .isStrongPassword()
-        .withMessage("Password Doesn't Meet Requirements"),
+        .isLength({ min: 8 })
+        .withMessage("Password Must Be At Least 8 Characters."),
 ];
 
 
-module.exports = asyncHandler, csrfProtection, userValidator, errorHandler;
+module.exports = { asyncHandler, csrfProtection, userValidator, errorHandler };
