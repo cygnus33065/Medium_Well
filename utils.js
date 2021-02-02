@@ -18,27 +18,27 @@ const errorHandler = (req, res, next) => {
     } next();
 }
 
-const userValidator = [
-    check("username")
-        .exists({ checkFalsy: true })
-        .withMessage("Username Required")
-        .isLength({ max: 20 })
-        .withMessage("Username Too Long"),
-    check("email")
-        .exists({ checkFalsy: true })
-        .withMessage("Email Required")
-        .isLength({ max: 50 })
-        .withMessage("Email Too Long")
-        .isEmail()
-        .withMessage("Input is Not an Email"),
-    check("password")
-        .exists({ checkFalsy: true })
-        .withMessage("Password Required")
-        .isLength({ min: 8 })
-        .withMessage("Password Must Be At Least 8 Characters.")
-        .equals("confirmPassword")
-        .withMessage("Passwords Do Not Match")
-];
+// const userValidator = [
+//     check("username")
+//         .exists({ checkFalsy: true })
+//         .withMessage("Username Required")
+//         .isLength({ max: 20 })
+//         .withMessage("Username Too Long"),
+//     check("email")
+//         .exists({ checkFalsy: true })
+//         .withMessage("Email Required")
+//         .isLength({ max: 50 })
+//         .withMessage("Email Too Long")
+//         .isEmail()
+//         .withMessage("Input is Not an Email"),
+//     check("password")
+//         .exists({ checkFalsy: true })
+//         .withMessage("Password Required")
+//         .isLength({ min: 8 })
+//         .withMessage("Password Must Be At Least 8 Characters.")
+//         .equals("password", "confirmPassword")
+//         .withMessage("Passwords Do Not Match")
+// ];
 
 
-module.exports = { asyncHandler, csrfProtection, userValidator, errorHandler };
+module.exports = { asyncHandler, csrfProtection, errorHandler };
