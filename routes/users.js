@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const {asyncHandler, csrfProtection, errorHandler, userValidator} = require('../utils.js')
 const csrf = require('csurf')
+const { check, validationResult } = require('express-validator');
 const { compileClientWithDependenciesTracked } = require('pug');
 const bcrypt = require('bcryptjs');
 const db = require('../db/models')
@@ -18,8 +19,8 @@ router.get('/signup', csrfProtection, (req, res, next) => {
 
 router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler(async(req, res) => {
   const {username, email, password, confirmPassword} = req.body;
-  console.log(password)
-  if (password === confirmPassword){
+  const errors = req.errors
+  if (!errors){
     const hashedPassword = await bcrypt.hash(password, 8);
     await User.create({
       username,
@@ -30,7 +31,7 @@ router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler
       res.redirect('/');
     });
   } else {
-    res.redirect('/signup', errors)
+    res.render('signup', {errors} )
   }
 }));
 

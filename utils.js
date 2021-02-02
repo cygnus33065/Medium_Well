@@ -8,29 +8,36 @@ const { check, validationResult } = require('express-validator');
 const errorHandler = (req, res, next) => {
     const validationErrors = validationResult(req);
     if (!validationErrors.isEmpty()){
-        const errors = validationErrors.array().map((error) => error.msg);
-        const err = Error('Bad Request');
-        err.errors = errors;
-        err.status = 400;
-        err.title = 'Bad Request';
-        return next(err);
+        req.errors = validationErrors.array().map((error) => error.msg);
+        // console.log(errors);
+        // const err = Error('Bad Request');
+        // err.errors = errors;
+        // err.status = 400;
+        // err.title = 'Bad Request';
+        // next(err);
     } next();
 }
 
 const userValidator = [
-    check('username')
+    check("username")
         .exists({ checkFalsy: true })
+        .withMessage("Username Required")
         .isLength({ max: 20 })
-        .withMessage('Invalid Username'),
-    check('email')
+        .withMessage("Username Too Long"),
+    check("email")
         .exists({ checkFalsy: true })
+        .withMessage("Email Required")
         .isLength({ max: 50 })
+        .withMessage("Email Too Long")
         .isEmail()
-        .withMessage('Invalid Email Address'),
-    check('password')
+        .withMessage("Input is Not an Email"),
+    check("password")
         .exists({ checkFalsy: true })
+        .withMessage("Password Required")
         .isLength({ min: 8 })
-        .withMessage("Password Must Be At Least 8 Characters."),
+        .withMessage("Password Must Be At Least 8 Characters.")
+        .equals("confirmPassword")
+        .withMessage("Passwords Do Not Match")
 ];
 
 
