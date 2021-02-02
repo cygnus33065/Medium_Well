@@ -47,12 +47,6 @@ router.get('/signup', csrfProtection, (req, res, next) => {
 router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler(async(req, res) => {
   const {username, email, password, confirmPassword} = req.body;
 
-  // [check('password')
-  // .custom(({req}) => {
-  //   if (req.body.password !== req.body.confirmPassword){
-  //     throw new Error ("Passwords do not match.")
-  //   } else return;
-  // })]
 
   let errors = req.errors
   if (!errors && password === confirmPassword){
