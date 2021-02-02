@@ -62,6 +62,34 @@ router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler
   }
 }));
 
+router.get('/login', csrfProtection, errorHandler, (req, res, next) =>{
+  res.render('login', {csrfToken : req.csrfToken()})
+})
 
+router.post('/login', csrfProtection, errorHandler, asyncHandler( async(req, res, next) => {
+  const { email, password } = req.body
 
+  let errors = req.errors
+
+  const user = await User.findOne({ where: {email: email}})
+
+  if(user) {
+    bcrypt.compare(password, user.hashedPassword, (err, passwordMatch) => {
+      if(err){
+        throw err
+      }
+      if(passwordMatch){
+        req.session.save(() => {
+          req.session.loggedin = true
+          req.session.username = user.username
+          res.render('test', {req, csrfToken : req.csrfToken()})
+        })
+      } else {
+        errors.push("Incorrect email/password.")
+        res.render('login', {errors, csrfToken: req.csrfToken() } )
+      }
+    })
+
+  }
+}))
 module.exports = router;

@@ -1,0 +1,17 @@
+extends layout.pug
+
+block content
+    if errors
+        ul
+            each error in errors
+                    li= error
+
+    form(method="POST" action="/users/login")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        div
+            label Email:
+            input(type="email" name="email" placeholder="Enter your email.")
+        div
+            label Password:
+            input(type="password" name="password" placeholder="Enter your password.")
+        button(type="submit") Log in.
