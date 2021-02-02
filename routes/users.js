@@ -31,7 +31,7 @@ router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler
       res.redirect('/');
     });
   } else {
-    res.render('signup', {errors} )
+    res.render('signup', {errors, csrfToken: req.csrfToken() } )
   }
 }));
 
