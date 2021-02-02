@@ -1,6 +1,6 @@
 
-import db from '../../db/models';
-const { User } = db;
+// import db from '../../db/models';
+// const { User } = db;
 
 window.addEventListener("load", (event)=>{
 
