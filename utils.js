@@ -3,44 +3,31 @@ const csrf = require('csurf');
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 const csrfProtection = csrf({ cookie: true });
 const { check, validationResult } = require('express-validator');
-
+const db = require('./db/models')
+const { User } = db;
 
 const errorHandler = (req, res, next) => {
     const validationErrors = validationResult(req);
     req.errors = [];
     if (!validationErrors.isEmpty()){
         req.errors = validationErrors.array().map((error) => error.msg);
-        // console.log(errors);
-        // const err = Error('Bad Request');
-        // err.errors = errors;
-        // err.status = 400;
-        // err.title = 'Bad Request';
-        // next(err);
+
     } 
     next();
 }
 
-// const userValidator = [
-//     check("username")
-//         .exists({ checkFalsy: true })
-//         .withMessage("Username Required")
-//         .isLength({ max: 20 })
-//         .withMessage("Username Too Long"),
-//     check("email")
-//         .exists({ checkFalsy: true })
-//         .withMessage("Email Required")
-//         .isLength({ max: 50 })
-//         .withMessage("Email Too Long")
-//         .isEmail()
-//         .withMessage("Input is Not an Email"),
-//     check("password")
-//         .exists({ checkFalsy: true })
-//         .withMessage("Password Required")
-//         .isLength({ min: 8 })
-//         .withMessage("Password Must Be At Least 8 Characters.")
-//         .equals("password", "confirmPassword")
-//         .withMessage("Passwords Do Not Match")
-// ];
+const checkUnique = async (username, email) => {
+   
+    const user = await User.findAll({
+        attributes: ['username', 'email']
+    });
+    console.log(user);
+    if (user.dataValues.username.includes(username)){
+        errors.push('Username is Taken')
+    }
+    if (user.dataValues.email.includes(email)){
+        errors.push("Email Already in Use")
+    }
+};
 
-
-module.exports = { asyncHandler, csrfProtection, errorHandler };
+module.exports = { asyncHandler, csrfProtection, errorHandler, checkUnique};

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {asyncHandler, csrfProtection, errorHandler} = require('../utils.js')
+const {asyncHandler, csrfProtection, errorHandler, checkUnique} = require('../utils.js')
 const csrf = require('csurf')
 const { check, validationResult } = require('express-validator');
 const { compileClientWithDependenciesTracked } = require('pug');
@@ -27,11 +27,6 @@ const userValidator = [
       .withMessage("Password Required")
       .isLength({ min: 8 })
       .withMessage("Password Must Be At Least 8 Characters.")
-      // .custom(({req}) => {
-      //   if (req.body.password !== req.body.confirmPassword){
-      //     throw new Error ("Passwords do not match.")
-      //   } else return;
-      // })
 
 ];
 
@@ -46,10 +41,10 @@ router.get('/signup', csrfProtection, (req, res, next) => {
 
 router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler(async(req, res) => {
   const {username, email, password, confirmPassword} = req.body;
-
-
+  
   let errors = req.errors
-  if (!errors && password === confirmPassword){
+  checkUnique(username, email);
+  if (errors.length === 0 && password === confirmPassword){
     const hashedPassword = await bcrypt.hash(password, 8);
     await User.create({
       username,
@@ -60,12 +55,7 @@ router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler
       res.redirect('/');
     });
   } else if (password !== confirmPassword){
-    console.log(errors)
-      if(!errors){
-        errors = ['Passwords do not match']
-      } else {
-        errors.push('Passwords do not match')
-      }
+    errors.push('Passwords do not match')
     res.render('signup', {errors, csrfToken: req.csrfToken() } )
   } else {
     res.render('signup', {errors, csrfToken: req.csrfToken() } )
