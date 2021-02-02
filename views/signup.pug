@@ -1,5 +1,8 @@
-extends layout.pug
+extends layout
 
+append head
+    //- script(src="/node_modules" type="module" defer)
+    script(src="/javascripts/users.js" type="module" defer)
 block content
     if errors
         ul
@@ -8,10 +11,10 @@ block content
 
     form(method="POST" action="/users/signup")
         input(type= "hidden" name="_csrf" value= csrfToken)
-        div
+        div(id="username")
             label Username:  
-            input(type= "text" name= "username" placeholder= "Enter Username.") 
-        div
+            input(type= "text" name= "username" id="usernameField" placeholder= "Enter Username.") 
+        div(id="email")
             label Email:  
             input(type= "email" name= "email" placeholder= "Enter Email.") 
         div
