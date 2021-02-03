@@ -9,7 +9,14 @@ module.exports = (sequelize, DataTypes) => {
     imgLink: DataTypes.STRING
   }, {});
   Story.associate = function(models) {
-    // associations can be defined here
+    const columnMappingUser = {
+      through: 'UserLikedStory',
+      otherKey: 'userId',
+      foreignKey: 'storyId'
+    }
+    Story.belongsToMany(models.User, columnMappingUser);
+
+    
   };
   return Story;
 };
