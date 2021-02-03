@@ -5,7 +5,7 @@ const csrf = require('csurf')
 const { check, validationResult } = require('express-validator');
 const { compileClientWithDependenciesTracked } = require('pug');
 const bcrypt = require('bcryptjs');
-const {loginUser} = require('../auth.js')
+const {loginUser, requireAuth, isAuth, logoutUser} = require('../auth.js')
 const db = require('../db/models')
 const { User } = db;
 
@@ -42,7 +42,7 @@ router.get('/signup', csrfProtection, (req, res, next) => {
 
 router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler(async(req, res) => {
   const {username, email, password, confirmPassword} = req.body;
-  
+
   let errors = req.errors
   checkUnique(username, email);
   if (errors.length === 0 && password === confirmPassword){
@@ -68,7 +68,7 @@ router.get('/login', csrfProtection, errorHandler, (req, res, next) =>{
   res.render('login', {csrfToken : req.csrfToken()})
 })
 
-router.post('/login', csrfProtection, errorHandler, asyncHandler( async(req, res, next) => {
+router.post('/login', isAuth, csrfProtection, errorHandler, asyncHandler( async(req, res, next) => {
   const { email, password } = req.body
 
   let errors = req.errors
@@ -85,7 +85,7 @@ router.post('/login', csrfProtection, errorHandler, asyncHandler( async(req, res
         console.log(req.session.auth)
         req.session.save(() => {
         res.redirect('/')
-        }) 
+        })
 
       } else {
         errors.push("Incorrect email/password.")
@@ -95,6 +95,10 @@ router.post('/login', csrfProtection, errorHandler, asyncHandler( async(req, res
 
   }
 }))
+
+router.post('/logout', (req,res) => {
+  logoutUser(req,res);
+  res.redirect('/')
+})
+
 module.exports = router;
-
-

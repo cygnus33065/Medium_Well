@@ -19,7 +19,7 @@ const restoreUser = async (req, res, next) => {
 
       if (user) {
         res.locals.authenticated = true;
-        res.locals.user = user;
+        res.locals.username = user.dataValues.username;
         next();
       }
     } catch (err) {
@@ -31,4 +31,23 @@ const restoreUser = async (req, res, next) => {
     next();
   }
 };
-module.exports = {loginUser, restoreUser}
+
+const requireAuth = (req, res, next) => {
+  if (!res.locals.authenticated) {
+    return res.redirect('/user/login');
+  }
+  return next();
+};
+
+const isAuth = (req,res,next) => {
+  if (res.locals.authenticated) {
+    return res.redirect('/');
+  }
+  return next();
+}
+
+const logoutUser = (req, res) => {
+  delete req.session.auth;
+};
+
+module.exports = {loginUser, restoreUser, requireAuth, isAuth, logoutUser}
