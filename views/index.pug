@@ -9,3 +9,7 @@ append head
 block content
   h1= title
   p Welcome to your Project Skeleton
+    if locals.authenticated
+        p Hello #{req.session.username}
+    else 
+        p You're logged out. 

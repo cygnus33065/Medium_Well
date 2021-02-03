@@ -27,7 +27,7 @@ const checkUnique = async (username, email) => {
         usernamesAndEmails.push(current.dataValues.username)
         usernamesAndEmails.push(current.dataValues.email)
     }
-    console.log(usernamesAndEmails)
+    // console.log(usernamesAndEmails)
     if (usernamesAndEmails.includes(username)){
         errors.push('Username is Taken')
     }

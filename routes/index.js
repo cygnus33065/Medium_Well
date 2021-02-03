@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'a/A Express Skeleton Home' });
+  // console.log(req)
+  res.render('index', { req, title: 'Medium Well Home' });
 });
 
 
