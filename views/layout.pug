@@ -7,19 +7,21 @@ html
   body
     div.container
       div.header
-        div.logo
+        div.logo-header
           a(href="/")
-          img(src="./MediumWellLogo.png")
-        div.message
+            img(src="https://i.ibb.co/K6Bx5zt/mediumwelllogo.png")
         if locals.authenticated
-          div.user-auth-header
+          div.message-header
             h3 Hello #{locals.username}
-            form(action='/users/logout' method='post')
-              button(type='submit') Log Out
-        else
           div.user-auth-header
-            h3 You're logged out
+            form(action='/users/logout' method='post')
+              button.button(type='submit') Log Out
+        else
+          div.message-header
+            h3 Welcome!
+          div.user-auth-header
             form(action='/users/login' method='get')
-              button(type='submit') Log In
+              button.button(type='submit') Log In
+            form(action='/users/signup' method='get')
+              button.button(type='submit') Create Account
       block content
-      img(src="https://css-tricks.com/wp-content/uploads/2018/11/dddgrid-template-areas.svg")

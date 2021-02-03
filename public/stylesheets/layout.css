@@ -12,29 +12,27 @@ body {
     background-color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
-    
-    
-
 }
 .header {
     grid-area: header;
-    height: 100px;
+    height: 150px;
     display: flex;
     justify-content: space-around;
+    background-color: black;
 
 }
 
 .user-auth-header {
-    align-items: center;
-}
-
-.logo {
-    background-color: blue;
-    align-self: center ;
-}
-
-.message {
     align-self: center;
+}
+
+.logo-header {
+    align-self: center;
+}
+
+.message-header {
+    align-self: center;
+    color: white;
 
 }
 
@@ -54,13 +52,20 @@ body {
     grid-area: footer;
 }
 
-
-
 .button {
-    
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    color: black;
+}
+.button:hover {
+    color: black;
+    background-color: #b19cd9;
 }
 
-.title-link {
 
-}
 
