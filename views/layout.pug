@@ -6,12 +6,20 @@ html
         link(rel='stylesheet' href='/stylesheets/layout.css')
   body
     div.container
-      div.header.container
-        p Welcome to your Project Skeleton
-          if locals.authenticated
-              p Hello #{locals.username}
-              form(action='/users/logout' method='post')
-                button(type='submit') Log Out
-          else
-              p You're logged out.
+      div.header
+        div.logo
+          a(href="/")
+          img(src="./MediumWellLogo.png")
+        div.message
+        if locals.authenticated
+          div.user-auth-header
+            h3 Hello #{locals.username}
+            form(action='/users/logout' method='post')
+              button(type='submit') Log Out
+        else
+          div.user-auth-header
+            h3 You're logged out
+            form(action='/users/login' method='get')
+              button(type='submit') Log In
       block content
+      img(src="https://css-tricks.com/wp-content/uploads/2018/11/dddgrid-template-areas.svg")

@@ -1,26 +1,66 @@
+body {
+    background-color: grey;
+}
+
 .container {
     display: grid;
-    grid-template-columns: 100px 100px 100px;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 
     'header header header'
     'content content side-bar'
     'footer footer footer';
-    background-color: blue;
+    background-color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    
+    
 
 }
 .header {
     grid-area: header;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.user-auth-header {
+    align-items: center;
+}
+
+.logo {
+    background-color: blue;
+    align-self: center ;
+}
+
+.message {
+    align-self: center;
+
 }
 
 .content {
     grid-area: content;
+    background-color: darkgrey;
+    width: 100%;
+    height: 100%;
 }
 
 .side-bar {
     grid-area: side-bar;
+    background-color: darkgrey;
 }
 
 .footer {
     grid-area: footer;
+}
+
+
+
+.button {
+    
+}
+
+.title-link {
+
 }
 
