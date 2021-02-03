@@ -16,7 +16,19 @@ module.exports = (sequelize, DataTypes) => {
     }
     Story.belongsToMany(models.User, columnMappingUser);
 
+    const columnMappingComment = {
+      through: 'Comment',
+      otherKey: 'userId',
+      foreignKey: 'storyId'
+    }
+    Story.belongsToMany(models.User, columnMappingComment)
     
+    const columnMappingCategory = {
+      through: 'StoryCategory',
+      otherKey: 'categoryId',
+      foreignKey: 'storyId'
+    }
+    Story.belongsToMany(models.Category, columnMappingCategory)
   };
   return Story;
 };

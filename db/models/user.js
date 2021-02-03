@@ -13,7 +13,34 @@ module.exports = (sequelize, DataTypes) => {
     hashedPassword: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    const columnMappingComment = {
+      through: "Comment",
+      otherKey: "storyId",
+      foreignKey: "userId"
+    }
+    User.belongsToMany(models.Story, columnMappingComment)
+
+    const columnMappingLikedStory = {
+      through: "UserLikedStory",
+      otherKey: "storyId",
+      foreignKey: "userId"
+    }
+    User.belongsToMany(models.UserLikedStory, columnMappingLikedStory)
+
+    const columnMappingLikedComment = {
+      through: "UserLikedComment",
+      otherKey: "commentId",
+      foreignKey: "userId"
+    }
+    User.belongsToMany(models.UserLikedComment, columnMappingLikedComment)
+
+    const columnMappingFollower = {
+      through: "Follower",
+      other: "userId",
+      foreignKey: "followerId"
+    }
+    User.belongsToMany(models.Follower, columnMappingFollower)
   };
+
   return User;
 };
