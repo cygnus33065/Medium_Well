@@ -3,6 +3,15 @@ html
   head
       block head
         title="Medium Well"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/layout.css')
   body
-    block content
+    div.container
+      div.header.container
+        p Welcome to your Project Skeleton
+          if locals.authenticated
+              p Hello #{locals.username}
+              form(action='/users/logout' method='post')
+                button(type='submit') Log Out
+          else
+              p You're logged out.
+      block content
