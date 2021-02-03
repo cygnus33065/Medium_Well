@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "storyId",
       foreignKey: "userId"
     }
-    User.belongsToMany(models.UserLikedStory, columnMappingLikedStory)
+    User.belongsToMany(models.UserLikedStories, columnMappingLikedStory)
 
     const columnMappingLikedComment = {
       through: "UserLikedComment",
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
 
     const columnMappingFollower = {
       through: "Follower",
-      other: "userId",
+      targetKey: "userId",
       foreignKey: "followerId"
     }
     User.belongsToMany(models.Follower, columnMappingFollower)

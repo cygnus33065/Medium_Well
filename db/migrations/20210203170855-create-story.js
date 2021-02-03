@@ -13,21 +13,21 @@ module.exports = {
         allowNull: false
       },
       title: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.TEXT,
         allowNull: false
       },
       date: {
         type: Sequelize.DATE
       },
       preview: {
-        type: Sequelize.STRING(255)
+        type: Sequelize.TEXT
       },
       story: {
         type: Sequelize.TEXT,
         allowNull: false
       },
       imgLink: {
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING(255)
       },
       createdAt: {
         allowNull: false,

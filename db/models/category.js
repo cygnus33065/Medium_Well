@@ -4,7 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   Category.associate = function(models) {
-    Category.belongsTo(model.StoryCategory, {foreignKey: 'categoryId'})
+    const columnMappingCategory = {
+      through: 'StoryCategory',
+      otherKey: 'storyId',
+      foreignKey: 'categoryId'
+    }
+    Category.belongsToMany(models.Story, columnMappingCategory)
   };
   return Category;
 };
