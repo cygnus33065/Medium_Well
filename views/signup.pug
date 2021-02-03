@@ -4,24 +4,26 @@ append head
     script(src="/javascripts/users.js" type="module" defer)
 block content
     if errors
-        ul
-            each error in errors
-                    li= error
-
-    form(method="POST" action="/users/signup")
-        input(type= "hidden" name="_csrf" value= csrfToken)
-        div(id="username")
-            label Username:  
-            input(type= "text" name= "username" id="usernameField" placeholder= "Enter Username") 
-        div(id="email")
-            label Email:  
-            input(type= "email" name= "email" placeholder= "Enter Email") 
-        div
-            label Password:  
-            input(type= "password" name= "password" placeholder= "Enter Password") 
-        div
-            label Confirm Password:  
-            input(type= "password" name= "confirmPassword" placeholder= "Confirm Password") 
-        button.button(type= "submit") Sign Up!
+        div.errors
+            ul
+                each error in errors
+                        li= error
+    div
+    div.form
+        form(method="POST" action="/users/signup")
+            input(type= "hidden" name="_csrf" value= csrfToken)
+            div.form-element(id="username")
+                label Username:  
+                input(type= "text" name= "username" id="usernameField" placeholder= "Enter Username") 
+            div.form-element(id="email")
+                label Email:  
+                input(type= "email" name= "email" placeholder= "Enter Email") 
+            div.form-element
+                label Password:  
+                input(type= "password" name= "password" placeholder= "Enter Password") 
+            div.form-element
+                label Confirm Password:  
+                input(type= "password" name= "confirmPassword" placeholder= "Confirm Password") 
+            button.button(type= "submit") Sign Up!
 
         
