@@ -1,11 +1,13 @@
 var express = require('express');
 var router = express.Router();
-
+const { asyncHandler } = require('../utils')
+const db = require('../db/models')
+const { Story } = db
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  // console.log(req)
-  res.render('index', { req, title: 'Medium Well Home' });
-});
+router.get('/', asyncHandler(async(req, res, next) => {
+  const stories = await Story.findAll()
+  res.render('index', { stories, req, title: 'Medium Well Home' });
+}));
 
 
 
