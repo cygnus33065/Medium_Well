@@ -5,7 +5,8 @@ const csrf = require('csurf')
 const { check, validationResult } = require('express-validator');
 const { compileClientWithDependenciesTracked } = require('pug');
 const bcrypt = require('bcryptjs');
-const db = require('../db/models')
+const db = require('../db/models');
+const { route } = require('./index.js');
 const { User, Follower, Category, Story, StoryCategory } = db;
 
 
@@ -36,5 +37,10 @@ router.get('/followers', asyncHandler(async(req, res, next) =>{
     res.json(users)
 }))
 
+router.get('/story/:id', asyncHandler(async(req,res,next) =>{
+    const id = parseInt(req.params.id, 10)
+    const story = await Story.findByPk(id);
+    res.render('story', {story})
+}))
 
 module.exports = router;

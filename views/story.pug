@@ -1,0 +1,17 @@
+extends layout
+append head
+  link(rel='stylesheet' href='/stylesheets/individualStory.css')
+  link(rel='stylesheet' href='/stylesheets/layout.css')
+block content
+  .story_page_container
+    .title_container
+      h1.title= story.title
+    .byline
+      p.author= story.author
+      p.date= story.date
+    .picture
+      img(src= story.imgLink)
+    .story_container
+      p.story= story.story
+    .likes_container
+    .comments_container
