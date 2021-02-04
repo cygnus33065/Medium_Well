@@ -40,7 +40,8 @@ router.get('/followers', asyncHandler(async(req, res, next) =>{
 router.get('/story/:id', asyncHandler(async(req,res,next) =>{
     const id = parseInt(req.params.id, 10)
     const story = await Story.findByPk(id);
-    res.render('story', {story})
+    const categories = await Category.findAll()
+    res.render('story', {story, categories})
 }))
 
 module.exports = router;
