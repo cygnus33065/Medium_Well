@@ -3,14 +3,16 @@
 .preview-story {
     /* border: 1px solid #b19cd9; */
     background-color: white;
-    width: 80%;
+    width: 650px;
+    height: 129px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
     display: flex;
-    /* flex-direction: row; */
+
+
 }
 
 .preview-story:hover {
@@ -30,6 +32,7 @@
     padding: 5px;
     font-size: 25px;
     line-height: 25px;
+    flex-wrap: wrap;
     /* font-family: Georgia, 'Times New Roman', Times, serif; */
 
 }
@@ -42,8 +45,8 @@
 
 .preview-story-img {
     align-items: flex-end;
-    width: 200px;
-    height: 200px;
+    width: 172px;
+    height: 129px;
     order: 1;
     padding: 5px;
 
