@@ -15,14 +15,30 @@ const userValidator = [
       .exists({ checkFalsy: true })
       .withMessage("Username Required")
       .isLength({ max: 20 })
-      .withMessage("Username Too Long"),
+      .withMessage("Username Too Long")
+      .custom((value) => {
+        return db.User.findOne({ where: { username: value } })
+          .then((user) => {
+            if (user) {
+              return Promise.reject('The provided Username is already in use by another account');
+            }
+          });
+      }),
   check("email")
       .exists({ checkFalsy: true })
       .withMessage("Email Required")
       .isLength({ max: 50 })
       .withMessage("Email Too Long")
       .isEmail()
-      .withMessage("Input is Not an Email"),
+      .withMessage("Input is Not an Email")
+      .custom((value) => {
+        return db.User.findOne({ where: { email: value } })
+          .then((user) => {
+            if (user) {
+              return Promise.reject('The provided Email Address is already in use by another account');
+            }
+          });
+      }),
   check("password")
       .exists({ checkFalsy: true })
       .withMessage("Password Required")
