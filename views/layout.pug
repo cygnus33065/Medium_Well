@@ -2,7 +2,32 @@ doctype html
 html
   head
       block head
-        title="Express Starter App"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+        title="Medium Well"
+        link(rel='stylesheet' href='/stylesheets/layout.css')
+        script(src="https://kit.fontawesome.com/59b37e5601.js" crossorigin="anonymous")
+
   body
-    block content
+    div.container
+      div.header
+        div.logo-header
+          a(href="/")
+            img.header-logo(src="https://i.ibb.co/K6Bx5zt/mediumwelllogo.png")
+        if locals.authenticated
+          div.message-header.fade-in
+            h3 Hello #{locals.username}
+          div.user-auth-header
+            form(action='/users/logout' method='post')
+              button.button(type='submit') Log Out
+        else
+          div.message-header.fade-in
+            h3 Welcome
+          div.user-auth-header
+            form(action='/users/login' method='get')
+              button.button(type='submit') Log In
+            form(action='/users/signup' method='get')
+              button.button(type='submit') Create Account
+      block content
+      div.side-bar
+        div.fade-in
+          h3 SideBar
+

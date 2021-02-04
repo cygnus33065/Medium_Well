@@ -1,0 +1,208 @@
+body {
+    background-color:white;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+    'header header header'
+    'content content side-bar'
+    'footer footer footer';
+    background-color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+.header {
+    grid-area: header;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+
+}
+.header-logo {
+    height: 120px;
+    width: auto;
+    justify-self: left;
+}
+
+.user-auth-header {
+    align-self: center;
+}
+
+.logo-header {
+    align-self: center;
+}
+
+.message-header {
+    align-self: center;
+    color: white;
+
+}
+
+.content {
+    box-sizing: border-box;
+    grid-area: content;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+
+}
+
+.content-title {
+    background-color: white;
+    margin-left: 125px;
+
+    
+
+}
+
+.side-bar {
+    grid-area: side-bar;
+    background-color: white;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.button {
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    color: black;
+    
+}
+.button:hover {
+    color: black;
+    background-color: #b19cd9;
+}
+
+.form {
+    margin: 50px 25px;
+    padding: 20px 20px 20px 20px;
+    border: 2px solid #b19cd9;
+    display: flex;
+    width: 400px;
+    display:inline-block;
+    border-radius:2em;
+    box-sizing: border-box;
+}
+.form-element {
+    padding: 10px 10px 10px 10px;
+}
+
+input[type=text]{
+    border: 1px solid #b19cd9;
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    box-sizing: border-box;
+}
+input[type=text]:focus{
+    background-color: #b19cd9;
+    color: white;
+}
+
+input[type=email]{
+    border: 1px solid #b19cd9;
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    box-sizing: border-box;
+}
+
+input[type=email]:focus{
+    background-color: #b19cd9;
+    color: white;
+}
+
+input[type=password]{
+    border: 1px solid #b19cd9;
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    box-sizing: border-box;
+}
+
+input[type=password]:focus{
+    background-color: #b19cd9;
+    color: white;
+}
+
+.errors {
+    color:#b19cd9;
+    font-size: small;
+    margin: 50px 25px;
+    padding: 20px 20px 20px 20px;
+
+}
+
+li {
+    list-style: georgian outside url("https://i.ibb.co/d4TFYBk/meat.png");
+
+}
+
+
+.fade-in {
+    align-self: center;
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+    color:white;
+  }
+@keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+  }
+  }
