@@ -1,0 +1,25 @@
+.story_page_container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.byline{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px 0 20px;
+    font-weight: bold;
+    color: darkgrey;
+}
+
+.title_container{
+    display:flex;
+    justify-content: center;
+}
+
+.story{
+    font-size: 21px;
+    line-height: 1.58;
+}
