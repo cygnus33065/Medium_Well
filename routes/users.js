@@ -7,7 +7,7 @@ const { compileClientWithDependenciesTracked } = require('pug');
 const bcrypt = require('bcryptjs');
 const {loginUser, requireAuth, isAuth, logoutUser} = require('../auth.js')
 const db = require('../db/models')
-const { User } = db;
+const { User, Category } = db;
 
 
 const userValidator = [
@@ -52,9 +52,10 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/signup', csrfProtection, (req, res, next) => {
-  res.render('signup', {csrfToken : req.csrfToken()});
-})
+router.get('/signup', csrfProtection, asyncHandler(async(req, res, next) => {
+  const categories = await Category.findAll();
+  res.render('signup', {categories, csrfToken : req.csrfToken()});
+}))
 
 router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler(async(req, res) => {
   const {username, email, password, confirmPassword} = req.body;
@@ -80,9 +81,10 @@ router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler
   }
 }));
 
-router.get('/login', csrfProtection, errorHandler, (req, res, next) =>{
-  res.render('login', {csrfToken : req.csrfToken()})
-})
+router.get('/login', csrfProtection, errorHandler, asyncHandler( async(req, res, next) =>{
+  const categories = await Category.findAll();
+  res.render('login', {categories, csrfToken : req.csrfToken()})
+}))
 
 router.post('/login', isAuth, csrfProtection, errorHandler, asyncHandler( async(req, res, next) => {
   const { email, password } = req.body
