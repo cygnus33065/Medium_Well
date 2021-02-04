@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "commentId",
       foreignKey: "userId"
     }
-    User.belongsToMany(models.Comment, columnMappingLikedComment)
+    // User.belongsToMany(models.Comment, columnMappingLikedComment)
 
     const columnMappingFollower = {
       through: "Follower",
