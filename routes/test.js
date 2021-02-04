@@ -39,7 +39,7 @@ router.get('/followers', asyncHandler(async(req, res, next) =>{
 
 // STORY ROUTES
 
-// all stories 
+// all stories - brandon and john wrote this one
 router.get('/stories', asyncHandler(async(req, res, next) =>{
     const users = await Story.findAll()
     res.json(users)
@@ -51,7 +51,7 @@ router.get('/stories/:id', asyncHandler(async(req, res, next) =>{
     const story = await Story.findByPk(id)
     res.json(story);
 }))
-// // Today's Articles - kind of hard to tell if the ASC or DESC works
+// // Today's Articles - 
 router.get('/recent', asyncHandler(async(req, res, next) => {
     const story = await Story.findAll({
         order: [["date", "DESC"]]
