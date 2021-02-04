@@ -9,3 +9,9 @@ append head
 block content
   h1= title
   p Welcome to your Project Skeleton
+    if locals.authenticated
+        p Hello #{locals.username}
+        form(action='/users/logout' method='post')
+          button(type='submit') Log Out
+    else
+        p You're logged out.

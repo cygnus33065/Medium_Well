@@ -1,0 +1,27 @@
+extends layout
+
+append head
+    script(src="/javascripts/users.js" type="module" defer)
+block content
+    if errors
+        ul
+            each error in errors
+                    li= error
+
+    form(method="POST" action="/users/signup")
+        input(type= "hidden" name="_csrf" value= csrfToken)
+        div(id="username")
+            label Username:  
+            input(type= "text" name= "username" id="usernameField" placeholder= "Enter Username.") 
+        div(id="email")
+            label Email:  
+            input(type= "email" name= "email" placeholder= "Enter Email.") 
+        div
+            label Password:  
+            input(type= "password" name= "password" placeholder= "Enter Password.") 
+        div
+            label Confirm Password:  
+            input(type= "password" name= "confirmPassword" placeholder= "Confirm Password.") 
+        button(type= "submit") Submit
+
+        
