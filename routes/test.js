@@ -7,7 +7,7 @@ const { compileClientWithDependenciesTracked } = require('pug');
 const bcrypt = require('bcryptjs');
 const db = require('../db/models');
 const { Sequelize } = require('../db/models');
-const { User, Follower, Category, Story, StoryCategory } = db;
+const { User, Follower, Category, Story, StoryCategory, UserLikedStory } = db;
 
 
 
@@ -78,6 +78,16 @@ router.get('/random', asyncHandler(async(req, res, next) => {
 //     res.json(likedStories)
 // }))
 
+// router.get('/trending', asyncHandler( async (req, res, next) => {
+//     const id = parseInt(req.params.id, 10)
+//     const mostLikes = await UserLikedStory.findAll({
+//         where: {storyId: id},
+//         limit: 5
+//     })
+//     // const likedStories = await Story.findByPk({
+//     //     where: {id : mostLikes}
+//     // })
+// }))
 
 
 
