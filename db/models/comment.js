@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     // This is the model name referencing thejoin table.
     otherKey: 'userId',
     foreignKey: 'commentId'}
-    Comment.belongsToMany(models.User, columnMapping);
+    // Comment.belongsToMany(models.User, columnMapping);
   };
 
   return Comment;
