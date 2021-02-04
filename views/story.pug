@@ -2,6 +2,7 @@ extends layout
 append head
   link(rel='stylesheet' href='/stylesheets/individualStory.css')
   link(rel='stylesheet' href='/stylesheets/layout.css')
+  script(src='/javascripts/stories.js')
 block content
   .story_page_container
     .title_container
@@ -13,5 +14,5 @@ block content
       img(src= story.imgLink)
     .story_container
       p.story= story.story
-    .likes_container
-    .comments_container
+    .likes_container#likes
+    .comments_container#comments
