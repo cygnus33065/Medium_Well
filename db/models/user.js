@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    username: { 
-      allowNull: false, 
+    username: {
+      allowNull: false,
       type: DataTypes.STRING,
       unique: {
           args: true,
@@ -25,21 +25,22 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "storyId",
       foreignKey: "userId"
     }
-    User.belongsToMany(models.UserLikedStories, columnMappingLikedStory)
+    User.belongsToMany(models.Story, columnMappingLikedStory)
 
     const columnMappingLikedComment = {
       through: "UserLikedComment",
       otherKey: "commentId",
       foreignKey: "userId"
     }
-    User.belongsToMany(models.UserLikedComment, columnMappingLikedComment)
+    User.belongsToMany(models.Comment, columnMappingLikedComment)
 
     const columnMappingFollower = {
       through: "Follower",
       otherKey: "userId",
-      foreignKey: "followerId"
+      foreignKey: "followerId",
+      as: "Followers"
     }
-    User.belongsToMany(models.Follower, columnMappingFollower)
+    User.belongsToMany(models.User, columnMappingFollower)
   };
 
   return User;
