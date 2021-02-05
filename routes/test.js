@@ -8,6 +8,9 @@ const bcrypt = require('bcryptjs');
 const db = require('../db/models');
 const { Sequelize } = require('../db/models');
 const { User, Follower, Category, Story, StoryCategory, UserLikedStory } = db;
+const { route } = require('./index.js');
+
+
 
 
 
@@ -32,6 +35,7 @@ router.get('/followers', asyncHandler(async(req, res, next) =>{
     res.json(users)
 }))
 
+
 //  DOES NOT WORK in story.js but works in test.js
 router.get('/recent', asyncHandler(async(req, res, next) => {
     const story = await Story.findAll({
@@ -40,6 +44,13 @@ router.get('/recent', asyncHandler(async(req, res, next) => {
     res.json(story)
 }))
 
+
+router.get('/story/:id', asyncHandler(async(req,res,next) =>{
+    const id = parseInt(req.params.id, 10)
+    const story = await Story.findByPk(id);
+    const categories = await Category.findAll()
+    res.render('story', {story, categories})
+}))
 
 
 module.exports = router;

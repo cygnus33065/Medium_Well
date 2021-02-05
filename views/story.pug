@@ -1,0 +1,28 @@
+extends layout
+append head
+  link(rel='stylesheet' href='/stylesheets/individualStory.css')
+  link(rel='stylesheet' href='/stylesheets/layout.css')
+  script(src='/javascripts/stories.js')
+block content
+  .story_page_container
+    .title_container
+      h1.title= story.title
+    .byline
+      p.author= story.author
+      p.date= story.date
+    .picture
+      img(src= story.imgLink)
+    .story_container
+      p.story= story.story
+    .likes_and_comments
+      .likes_container#likes
+        <i class="fas fa-bacon"></i>
+          span.like_comment_text 1,254,555
+      if locals.authenticated
+        .comments_container#comments
+          <i class="far fa-comments"></i>
+            span.like_comment_text Comment
+      else
+        .comments_container#comments
+          <i class="fas fa-comment-slash"></i>
+            span.like_comment_text Please login to comment.
