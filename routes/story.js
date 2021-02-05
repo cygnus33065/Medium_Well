@@ -65,4 +65,35 @@ router.get('/recent', asyncHandler(async(req, res, next) => {
     })
     res.json(story)
 }))
+
+router.put('/:id', asyncHandler(async(req,res,next)=> {
+    const storyId = parseInt(req.params.id, 10);
+    const username = locals.username
+    const user = await User.findOne( {where: {username}})
+    const isLiked = await UserLikedStory.findOne({where: {storyId, userId: user.id}})
+    if(!isLiked){
+        await UserLikedStory.create({
+            userId: user.id,
+            storyId
+        })
+        return await UserLikedStory.count({where: {storyId}})
+    } else {
+        await UserLikedStory.destroy({ where: {userId: user.id, storyId}})
+        return await UserLikedStory.count({where: {storyId}})
+    }
+}))
+
+router.post('/:id', asyncHandler(async(req,res,next)=> {
+    const storyId = parseInt(req.perams.id, 10);
+    const username = locals.username
+    const user = await User.findOne( {where: {username}})
+    const {comment} = req.body;
+
+    const newComment = await Comment.create({
+      comment,
+      userId: user.id,
+      storyId
+    })
+    res.json(newComment)
+}))
 module.exports = router;
