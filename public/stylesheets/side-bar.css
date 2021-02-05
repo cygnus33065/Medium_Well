@@ -1,0 +1,41 @@
+.side-bar {
+    grid-area: side-bar;
+    background-color: whitesmoke;
+    display: flex;
+    /* align-items: flex-end; */
+    justify-content: center;
+    height: 40%;
+    width: 17%;
+    position: fixed;
+    right: 0px;
+    top: 150px;
+    margin: 8px;
+    padding: 10px;
+
+}
+.side-bar-title {
+    color: black;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    vertical-align: super;
+    font-size:smaller;
+
+}
+.side-button-container {
+    font-size: 3em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+
+} 
+.side-button {
+    padding: 10px 10px 10px 10px;
+    background-color: whitesmoke;
+    opacity: 0.3;
+
+}
+
+.side-button:hover {
+    box-shadow: 3px 3px 5px #e8e8e8;
+    background-color: whitesmoke;
+    opacity: 1;
+}

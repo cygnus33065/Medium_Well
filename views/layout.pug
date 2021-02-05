@@ -4,6 +4,7 @@ html
       block head
         title="Medium Well"
         link(rel='stylesheet' href='/stylesheets/layout.css')
+        link(rel='stylesheet' href='/stylesheets/side-bar.css')
         script(src="https://kit.fontawesome.com/59b37e5601.js" crossorigin="anonymous")
 
   body
@@ -28,7 +29,19 @@ html
               button.button(type='submit') Create Account
       block content
       div.side-bar
-        h3 Categories
-          each category in categories
-            div.side-bar-content
-              a.button(href=`/category/${category.id}`)= category.name
+        h3.side-bar-title WHAT TO READ
+            div.side-button-container
+              a.side-button(href="/category/1") 
+                i(class="fas fa-music")
+              a.side-button(href="/category/2") 
+                i(class="fas fa-tv")
+              a.side-button(href="/category/3") 
+                i(class="fas fa-film")
+              a.side-button(href="/category/4") 
+                i(class="fas fa-user-secret")
+              a.side-button(href="/category/5") 
+                i(class="fas fa-laptop-code")
+              a.side-button(href="/category/6") 
+                i(class="fas fa-wifi")
+              a.side-button(href="/category/7") 
+                i(class="fas fa-hamburger")
