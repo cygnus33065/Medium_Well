@@ -66,3 +66,14 @@
 textarea {
     resize: none;
 }
+
+.bacon-button {
+    background-color: white;
+    border: 0px solid white;
+}
+
+.bacon-button:hover {
+    background-color: white;
+    border: 0px solid white;
+    color: #b19cd9
+}

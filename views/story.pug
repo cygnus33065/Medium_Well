@@ -16,7 +16,8 @@ block content
       p.story= story.story
     .likes_and_comments
       .likes_container#likes
-        <i class="fas fa-bacon"></i>
+        form(action="/" method="PUT")
+          button.bacon-button(type=button) <i class="fas fa-bacon"></i>
           span.like_comment_text 1,254,555
       if locals.authenticated
         .comments_container#comments
