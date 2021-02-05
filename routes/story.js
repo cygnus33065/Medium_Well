@@ -52,10 +52,12 @@ router.get('/categories/:id', asyncHandler(async(req, res, next) => {
 
 // Get all the stories from each category
 router.get('/categories/:id/stories', asyncHandler(async(req, res, next) =>{
-    const stories = await Category.findAll({
+    const id = parseInt(req.params.id, 10)
+    const stories = await Category.findByPk(id, {
         include: {model: Story}
     }) 
-    res.json(stories)
+    console.log(stories.Stories)
+    res.render("category", {stories: stories.Stories})
   }))
 
   // Today's Articles - < - DOES NOT WORK /story/recent. only /test/recent
@@ -64,5 +66,36 @@ router.get('/recent', asyncHandler(async(req, res, next) => {
         order: [["date", "DESC"]]
     })
     res.json(story)
+}))
+
+router.put('/:id', asyncHandler(async(req,res,next)=> {
+    const storyId = parseInt(req.params.id, 10);
+    const username = locals.username
+    const user = await User.findOne( {where: {username}})
+    const isLiked = await UserLikedStory.findOne({where: {storyId, userId: user.id}})
+    if(!isLiked){
+        await UserLikedStory.create({
+            userId: user.id,
+            storyId
+        })
+        return await UserLikedStory.count({where: {storyId}})
+    } else {
+        await UserLikedStory.destroy({ where: {userId: user.id, storyId}})
+        return await UserLikedStory.count({where: {storyId}})
+    }
+}))
+
+router.post('/:id', asyncHandler(async(req,res,next)=> {
+    const storyId = parseInt(req.perams.id, 10);
+    const username = locals.username
+    const user = await User.findOne( {where: {username}})
+    const {comment} = req.body;
+
+    const newComment = await Comment.create({
+      comment,
+      userId: user.id,
+      storyId
+    })
+    res.json(newComment)
 }))
 module.exports = router;

@@ -15,8 +15,12 @@ block content
                 input(type="password" name="password" id="password" placeholder="Enter Password")
             div.button-container
                 button.button(type="submit") Log In
+           
+        form(method="POST" action="/users/demo")
+            div.button-container
+                button.button(type="submit") Demo Log In
                 a(href="/users/signup").form-link
-                    p.form-fine-print or click here to sign up
+                    p.form-fine-print or click here to sign up       
     div
     div
     if errors
@@ -24,3 +28,4 @@ block content
             ul
                 each error in errors
                         li= error
+

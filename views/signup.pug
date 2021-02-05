@@ -3,7 +3,6 @@ extends layout
 append head
     script(src="/javascripts/users.js" type="module" defer)
 block content
-
     div
     div.form 
         form(method="POST" action="/users/signup")
@@ -32,4 +31,4 @@ block content
                 each error in errors
                         li= error
 
-        
+
