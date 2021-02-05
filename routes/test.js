@@ -7,8 +7,9 @@ const { compileClientWithDependenciesTracked } = require('pug');
 const bcrypt = require('bcryptjs');
 const db = require('../db/models');
 const { Sequelize } = require('../db/models');
-const { User, Follower, Category, Story, StoryCategory, UserLikedStory } = db;
+const { User, Follower, Category, Story, StoryCategory, UserLikedStory, Comment } = db;
 const { route } = require('./index.js');
+// const { json } = require('sequelize/types');
 
 
 
@@ -52,5 +53,26 @@ router.get('/story/:id', asyncHandler(async(req,res,next) =>{
     res.render('story', {story, categories})
 }))
 
+router.post('/story/:id', asyncHandler(async(req,res,next)=> {
+    const storyId = parseInt(req.perams.id, 10);
+    const username = locals.username
+    const user = await User.findOne( {where: {username}})
+    const {comment} = req.body;
 
+    const newComment = await Comment.create({
+      comment,
+      userId: user.id,
+      storyId
+    })
+    res.json(newComment)
+}))
+
+
+router.put('/story/:id', asyncHandler(async(req,res,next)=> {
+    const storyId = parseInt(req.perams.id, 10);
+    const username = locals.username
+    const user = await User.findOne( {where: {username}})
+    const isLiked = await UserLikedStory.findOne({where: {storyId, userId: user.id}})
+    // write query to get total likes.
+}))
 module.exports = router;
