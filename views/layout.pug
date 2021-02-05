@@ -28,7 +28,7 @@ html
               button.button(type='submit') Create Account
       block content
       div.side-bar
-        h3.fade-in Categories
+        h3 Categories
           each category in categories
-            div.fade-in
+            div.side-bar-content
               a.button(href=`/category/${category.id}`)= category.name

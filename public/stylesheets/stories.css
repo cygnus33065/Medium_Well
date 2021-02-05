@@ -16,7 +16,7 @@
 }
 
 .preview-story:hover {
-    border: 1px solid #b19cd9;
+    box-shadow: 3px 3px 5px #e8e8e8;
     background-color: white;
     /* width: 80%; */
     margin-bottom: 10px;
@@ -24,14 +24,14 @@
     margin-right: auto;
     padding: 5px;
     display: flex;
-    background-color: violet;
+
     /* flex-direction: row; */
 }
 .preview-story-title {
     margin-bottom: 0px;
     justify-self: flex-start;
     padding: 5px;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 25px;
     flex-wrap: wrap;
     /* font-family: Georgia, 'Times New Roman', Times, serif; */
@@ -42,6 +42,7 @@
     align-self: flex-end;
     padding: 5px;
     color: darkgrey;
+    font-size: 15px;
 }
 
 .preview-story-img {
