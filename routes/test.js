@@ -6,8 +6,11 @@ const { check, validationResult } = require('express-validator');
 const { compileClientWithDependenciesTracked } = require('pug');
 const bcrypt = require('bcryptjs');
 const db = require('../db/models');
+const { Sequelize } = require('../db/models');
+const { User, Follower, Category, Story, StoryCategory, UserLikedStory } = db;
 const { route } = require('./index.js');
-const { User, Follower, Category, Story, StoryCategory } = db;
+
+
 
 
 
@@ -27,15 +30,20 @@ router.get('/storycategories', asyncHandler(async(req, res, next) =>{
     res.json(users)
 }))
 
-router.get('/stories', asyncHandler(async(req, res, next) =>{
-    const users = await Story.findAll()
-    res.json(users)
-}))
-
 router.get('/followers', asyncHandler(async(req, res, next) =>{
     const users = await Follower.findAll()
     res.json(users)
 }))
+
+
+//  DOES NOT WORK in story.js but works in test.js
+router.get('/recent', asyncHandler(async(req, res, next) => {
+    const story = await Story.findAll({
+        order: [["date", "DESC"]]
+    })
+    res.json(story)
+}))
+
 
 router.get('/story/:id', asyncHandler(async(req,res,next) =>{
     const id = parseInt(req.params.id, 10)
@@ -43,5 +51,6 @@ router.get('/story/:id', asyncHandler(async(req,res,next) =>{
     const categories = await Category.findAll()
     res.render('story', {story, categories})
 }))
+
 
 module.exports = router;

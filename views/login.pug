@@ -8,13 +8,17 @@ block content
             ul
                 each error in errors
                         li= error
+    div                    
     div.form
         form(method="POST" action="/users/login")
             input(type="hidden" name="_csrf" value=csrfToken)
             div.form-element
-                label Email: 
-                input(type="email" name="email" placeholder="Enter Email")
+                label.form-label(for="email") Email: 
+                input(type="email" name="email" id="email" placeholder="Enter Email")
             div.form-element
-                label Password: 
-                input(type="password" name="password" placeholder="Enter Password")
-            button.button(type="submit") Log In
+                label.form-label(for="password") Password: 
+                input(type="password" name="password" id="password" placeholder="Enter Password")
+            div.button-container
+                button.button(type="submit") Log In
+                a(href="/users/signup").form-link
+                    p.form-fine-print or click here to sign up

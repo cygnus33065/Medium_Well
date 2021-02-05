@@ -23,3 +23,22 @@
     font-size: 21px;
     line-height: 1.58;
 }
+
+
+.likes_and_comments {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.likes_and_comments i {
+    font-size: 20px;
+}
+
+
+.like_comment_text {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-left: 10px;
+}

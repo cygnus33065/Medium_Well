@@ -89,6 +89,7 @@ router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler
   }
 }));
 
+
 router.get('/login', csrfProtection, errorHandler, asyncHandler(async(req, res, next) =>{
   const categories = await Category.findAll();
   res.render('login', {categories, csrfToken : req.csrfToken()})
