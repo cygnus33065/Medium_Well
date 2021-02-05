@@ -74,5 +74,15 @@ router.put('/story/:id', asyncHandler(async(req,res,next)=> {
     const user = await User.findOne( {where: {username}})
     const isLiked = await UserLikedStory.findOne({where: {storyId, userId: user.id}})
     // write query to get total likes.
+    if(!isLiked){
+        await UserLikedStory.create({
+            userId: user.id,
+            storyId
+        })
+        return await UserLikedStory.count({where: {storyid}})
+    } else {
+        await UserLikedStory.destroy({ where: {userId: user.id, storyId}})
+        return await UserLikedStory.count({where: {storyId}})
+    }
 }))
 module.exports = router;
