@@ -59,26 +59,25 @@ body {
 
 }
 
-.side-bar {
-    grid-area: side-bar;
-    background-color: whitesmoke;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    height: 50%;
-    position: fixed;
-    right: 0px;
-    top: 150px;
-    margin: 8px;
-    color: black;
-    padding: 20px;
-}
-.side-bar-content {
-  padding: 10px;
-}
 
 .footer {
     grid-area: footer;
+    position: fixed; right: 0px; top: 525px;
+    background-color: white;
+    display: flex;
+    justify-content: left;
+    height: 20px;
+    width: 20%;
+    font-size: 12px;
+    color: grey;
+    flex-direction: row;
+    flex-wrap:wrap;
+    right: 0px;
+
+}
+.footer-text {
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .button {
