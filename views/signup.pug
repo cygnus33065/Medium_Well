@@ -9,21 +9,24 @@ block content
                 each error in errors
                         li= error
     div
-    div.form
+    div.form 
         form(method="POST" action="/users/signup")
             input(type= "hidden" name="_csrf" value= csrfToken)
-            div.form-element(id="username")
-                label Username:  
-                input(type= "text" name= "username" id="usernameField" placeholder= "Enter Username") 
-            div.form-element(id="email")
-                label Email:  
-                input(type= "email" name= "email" placeholder= "Enter Email") 
             div.form-element
-                label Password:  
-                input(type= "password" name= "password" placeholder= "Enter Password") 
+                label.form-label(for="username") Username:  
+                input(type= "text" name= "username" id="username" placeholder= "Enter Username") 
             div.form-element
-                label Confirm Password:  
-                input(type= "password" name= "confirmPassword" placeholder= "Confirm Password") 
-            button.button(type= "submit") Sign Up!
+                label.form-label(for="email") Email:  
+                input(type= "email" name="email" id="email" placeholder= "Enter Email") 
+            div.form-element
+                label.form-label(for="password") Password:  
+                input(type= "password" name= "password" id="password" placeholder= "Enter Password") 
+            div.form-element
+                label.form-label(for="confirmPassword") Confirm Password:  
+                input(type= "password" name= "confirmPassword" id="confirmPassword" placeholder= "Confirm Password") 
+            div.button-container
+                button.button(type= "submit") Sign Up!
+                a(href="/users/login").form-link
+                    p.form-fine-print or click here to log in
 
         
