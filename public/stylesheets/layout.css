@@ -201,8 +201,10 @@ input[type=password]:focus{
 .errors {
     color:#b19cd9;
     font-size: small;
-    margin: 50px 25px;
-    padding: 20px 20px 20px 20px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 20px 20px 20px;
 
 }
 
