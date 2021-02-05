@@ -62,18 +62,22 @@ body {
 
 .footer {
     grid-area: footer;
+    position: fixed; right: 0px; top: 525px;
     background-color: white;
     display: flex;
     justify-content: left;
     height: 20px;
     width: 20%;
-    position: fixed;
     font-size: 12px;
     color: grey;
-    right: 0px;
-    top: 550px;
     flex-direction: row;
     flex-wrap:wrap;
+    right: 0px;
+
+}
+.footer-text {
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .button {

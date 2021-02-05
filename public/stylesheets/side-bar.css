@@ -4,7 +4,7 @@
     display: flex;
     /* align-items: flex-end; */
     justify-content: center;
-    height: 40%;
+    height: auto;
     width: 20%;
     position: fixed;
     right: 0px;
@@ -12,8 +12,10 @@
     margin: 8px;
     padding: 10px;
     box-shadow: 3px 3px 5px #e8e8e8;
+    overflow: scroll;
 
 }
+
 .side-bar-title {
     color: #b19cd9;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,6 +31,7 @@
     flex-wrap:wrap;
     margin-left: auto;
     margin-right: auto;
+    overflow: scroll;
 
 } 
 .side-button {
@@ -37,6 +40,7 @@
     opacity: 0.3;
     margin-left: auto;
     margin-right: auto;
+    overflow: scroll;
 
 }
 
