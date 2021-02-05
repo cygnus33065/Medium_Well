@@ -3,9 +3,6 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
 
 * {
   box-sizing: border-box;
@@ -25,3 +22,4 @@ body, header, nav {
 h1 {
   font-size: 2rem;
 }
+
