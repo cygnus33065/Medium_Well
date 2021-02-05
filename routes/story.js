@@ -52,10 +52,12 @@ router.get('/categories/:id', asyncHandler(async(req, res, next) => {
 
 // Get all the stories from each category
 router.get('/categories/:id/stories', asyncHandler(async(req, res, next) =>{
-    const stories = await Category.findAll({
+    const id = parseInt(req.params.id, 10)
+    const stories = await Category.findByPk(id, {
         include: {model: Story}
     }) 
-    res.json(stories)
+    console.log(stories.Stories)
+    res.render("category", {stories: stories.Stories})
   }))
 
   // Today's Articles - < - DOES NOT WORK /story/recent. only /test/recent

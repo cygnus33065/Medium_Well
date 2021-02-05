@@ -3,11 +3,6 @@ extends layout
 append head
     script(src="/javascripts/users.js" type="module" defer)
 block content
-    if errors
-        div.errors
-            ul
-                each error in errors
-                        li= error
     div
     div.form 
         form(method="POST" action="/users/signup")
@@ -28,5 +23,13 @@ block content
                 button.button(type= "submit") Sign Up!
                 a(href="/users/login").form-link
                     p.form-fine-print or click here to log in
+    div
+    div
+    div
+        if errors
+            div.errors
+                ul
+                    each error in errors
+                            li= error
 
-        
+

@@ -1,0 +1,19 @@
+extends layout
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/layout.css")
+  link(rel="stylesheet" href="/stylesheets/stories.css")
+  //- add page specific js
+  script(src="/javascripts/index.js" type="module" defer)
+
+block content
+  div.container
+  div.content
+    each story in stories
+      a(href=`/test/story/${story.id}`)
+        div.preview-story
+          div.story-text
+            h4.preview-story-title= story.title
+            p.preview-story-desc= story.preview
+          img.preview-story-img(src= story.imgLink)

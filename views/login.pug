@@ -3,11 +3,6 @@ extends layout.pug
 append head
     script(src='' type="module" defer)
 block content
-    if errors
-        div.errors
-            ul
-                each error in errors
-                        li= error
     div                    
     div.form
         form(method="POST" action="/users/login")
@@ -25,6 +20,13 @@ block content
             div.button-container
                 button.button(type="submit") Demo Log In
                 a(href="/users/signup").form-link
-                    p.form-fine-print or click here to sign up
-                
-        
+                    p.form-fine-print or click here to sign up       
+    div
+    div
+    if errors
+        div.errors
+            ul
+                each error in errors
+                        li= error
+            
+
