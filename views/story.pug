@@ -27,3 +27,17 @@ block content
           a(href="/users/login").like_comment_text
             <i class="fas fa-comment-slash"></i>
               span &nbsp; Please login to comment.
+    div.comments-section
+      div.comments
+        div.comment-card
+          h4 Username
+          p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+        div.comment-card
+        div.comment-card
+      if locals.authenticated
+        div.comment-submit-form
+          form.form(action="/comments/submit" method="POST")
+            legend.form-legend Submit a Comment
+              div
+                textarea(name="comment" id="commentField" rows="10" cols="40")
+              button.button(type="submit") Submit

@@ -43,4 +43,26 @@
     padding-left: 10px;
     text-decoration: none;
 }
+.comments-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
 
+}
+.comments {
+
+}
+.comment-card { 
+    border: 1px solid whitesmoke;
+}
+
+
+.comment-submit-form{
+
+
+}
+
+textarea {
+    resize: none;
+}
