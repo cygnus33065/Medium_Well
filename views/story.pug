@@ -24,5 +24,6 @@ block content
             span.like_comment_text Comment
       else
         .comments_container#comments
-          <i class="fas fa-comment-slash"></i>
-            span.like_comment_text Please login to comment.
+          a(href="/users/login").like_comment_text
+            <i class="fas fa-comment-slash"></i>
+              span &nbsp; Please login to comment.

@@ -41,4 +41,6 @@
 .like_comment_text {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding-left: 10px;
+    text-decoration: none;
 }
+
