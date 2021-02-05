@@ -7,7 +7,7 @@ const { compileClientWithDependenciesTracked } = require('pug');
 const bcrypt = require('bcryptjs');
 const {loginUser, requireAuth, isAuth, logoutUser} = require('../auth.js')
 const db = require('../db/models')
-const { User } = db;
+const { User, Category } = db;
 
 
 const userValidator = [
@@ -43,22 +43,31 @@ const userValidator = [
       .exists({ checkFalsy: true })
       .withMessage("Password Required")
       .isLength({ min: 8 })
-      .withMessage("Password Must Be At Least 8 Characters.")
-
+      .withMessage("Password Must Be At Least 8 Characters."),
 ];
+
+const loginValidator = [
+  check("email")
+      .exists({ checkFalsy: true })
+      .withMessage("Email Required"),
+  check("password")
+      .exists({ checkFalsy: true })
+      .withMessage("Password Required")
+]
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/signup', csrfProtection, (req, res, next) => {
-  res.render('signup', {csrfToken : req.csrfToken()});
-})
+router.get('/signup', csrfProtection, asyncHandler(async(req, res, next) => {
+  const categories = await Category.findAll();
+  res.render('signup', {categories, csrfToken : req.csrfToken()});
+}))
 
 router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler(async(req, res) => {
   const {username, email, password, confirmPassword} = req.body;
-
+  const categories = await Category.findAll();
   let errors = req.errors
   checkUnique(username, email);
   if (errors.length === 0 && password === confirmPassword){
@@ -74,19 +83,20 @@ router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler
     });
   } else if (password !== confirmPassword){
     errors.push('Passwords do not match')
-    res.render('signup', {errors, csrfToken: req.csrfToken() } )
+    res.render('signup', {errors,categories, csrfToken: req.csrfToken() } )
   } else {
-    res.render('signup', {errors, csrfToken: req.csrfToken() } )
+    res.render('signup', {errors, categories, csrfToken: req.csrfToken() } )
   }
 }));
 
-router.get('/login', csrfProtection, errorHandler, (req, res, next) =>{
-  res.render('login', {csrfToken : req.csrfToken()})
-})
+router.get('/login', csrfProtection, errorHandler, asyncHandler(async(req, res, next) =>{
+  const categories = await Category.findAll();
+  res.render('login', {categories, csrfToken : req.csrfToken()})
+}))
 
-router.post('/login', isAuth, csrfProtection, errorHandler, asyncHandler( async(req, res, next) => {
+router.post('/login', isAuth, csrfProtection, loginValidator, errorHandler, asyncHandler(async(req, res, next) => {
   const { email, password } = req.body
-
+  const categories = await Category.findAll();
   let errors = req.errors
 
   const user = await User.findOne({ where: {email: email}})
@@ -98,17 +108,21 @@ router.post('/login', isAuth, csrfProtection, errorHandler, asyncHandler( async(
       }
       if(passwordMatch){
         loginUser(req, res, user)
-        console.log(req.session.auth)
         req.session.save(() => {
         res.redirect('/')
         })
 
       } else {
         errors.push("Incorrect email/password.")
-        res.render('login', {errors, csrfToken: req.csrfToken() } )
+        res.render('login', {errors, categories, csrfToken: req.csrfToken() } )
       }
     })
 
+  }else if(!user && errors.length === 0) {
+    errors.push("Incorrect email/password.")
+    res.render('login', {errors, categories, csrfToken: req.csrfToken()})
+  }else {
+    res.render('login', {errors, categories, csrfToken: req.csrfToken()})
   }
 }))
 
