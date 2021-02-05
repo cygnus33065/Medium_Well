@@ -114,6 +114,7 @@ body {
     border-radius:2em;
     box-sizing: border-box;
     box-shadow: 3px 3px 5px #e8e8e8;
+    align-items: center;
 }
 .form-element {
     padding: 10px 10px 10px 10px;
