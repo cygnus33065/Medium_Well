@@ -38,11 +38,15 @@ router.get('/', asyncHandler(async(req, res, next) =>{
 
 // // one story 
 router.get('/:id', asyncHandler(async(req, res, next) =>{
-    const id = parseInt(req.params.id, 10)
-    const story = await Story.findByPk(id)
-    // res.json(story)
+    const storyId = parseInt(req.params.id, 10);
+    const story = await Story.findByPk(storyId);
     const categories = await Category.findAll();
-    res.render('story', {story, categories});
+    const comments = await Comment.findAll({
+        where: {
+            storyId
+        },
+    });
+    res.render('story', {story, categories, comments});
 }))
 
 // Get each category
@@ -88,24 +92,24 @@ router.put('/:id', asyncHandler(async(req,res,next)=> {
 }))
 
 router.post('/:id', asyncHandler(async(req,res,next)=> {
-    const storyId = parseInt(req.params.id, 10);
-    const username = 'demo'
-    const user = await User.findOne( {where: {username}})
-    const {comment} = req.body;
+    const storyId = parseInt(req.params.id, 10); //parsing the ids
+    const story = await Story.findByPk(storyId);
+    const categories = await Category.findAll();
+    const username = 'demo'; // hardcoding demo user - come back to select current user
+    const user = await User.findOne({ where: {username}}) 
+    const {comment} = req.body; // grabbing comment
 
     const newComment = await Comment.create({
       comment,
       userId: user.id,
       storyId
     })
-    const IdComments = await Comment.findAll({
+    const comments = await Comment.findAll({
         where: {
             storyId
         },
     });
-    console.log(IdComments)
-    // res.render('story', {IdComments})
-    // return IdComments;
+    res.render('story', {story, categories, comments})
 }));
 
 module.exports = router;

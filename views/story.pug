@@ -15,10 +15,6 @@ block content
     .story_container
       p.story= story.story
     .likes_and_comments
-      .likes_container#likes
-        form(action="/" method="PUT")
-          button.bacon-button(type=button) <i class="fas fa-bacon"></i>
-          span.like_comment_text 1,254,555
       if locals.authenticated
         .comments_container#comments
           button.bacon-button(type=button) <i class="far fa-comments"></i>
@@ -28,8 +24,14 @@ block content
           a(href="/users/login").like_comment_text
             <i class="fas fa-comment-slash"></i>
               span &nbsp; Please login to comment.
+      .likes_container#likes
+        form(action="/" method="PUT")
+          button.bacon-button(type=button) <i class="fas fa-bacon"></i>
+          span.like_comment_text 1,254,555
     div.comments-section
-      div.comments
+      each comment in comments
+        div.comments
+          p.comment-card= comment.comment
       if locals.authenticated
         div.comment-submit-form
           form.form(action=`/story/${story.id}`  method="POST" id="comment-form")
