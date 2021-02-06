@@ -40,7 +40,9 @@ router.get('/', asyncHandler(async(req, res, next) =>{
 router.get('/:id', asyncHandler(async(req, res, next) =>{
     const id = parseInt(req.params.id, 10)
     const story = await Story.findByPk(id)
-    res.json(story);
+    // res.json(story)
+    const categories = await Category.findAll();
+    res.render('story', {story, categories});
 }))
 
 // Get each category
@@ -96,12 +98,14 @@ router.post('/:id', asyncHandler(async(req,res,next)=> {
       userId: user.id,
       storyId
     })
-    return await Comment.findAll({
+    const IdComments = await Comment.findAll({
         where: {
             storyId
         },
-        includes: {model: User}
     });
+    console.log(IdComments)
+    // res.render('story', {IdComments})
+    // return IdComments;
 }));
 
 module.exports = router;

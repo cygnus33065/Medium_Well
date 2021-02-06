@@ -2,7 +2,7 @@ extends layout
 append head
   link(rel='stylesheet' href='/stylesheets/individualStory.css')
   link(rel='stylesheet' href='/stylesheets/layout.css')
-  script(src='/javascripts/stories.js')
+  script(src='../public/javascripts/comment.js')
 block content
   .story_page_container
     .title_container
@@ -21,7 +21,7 @@ block content
           span.like_comment_text 1,254,555
       if locals.authenticated
         .comments_container#comments
-          <i class="far fa-comments"></i>
+          button.bacon-button(type=button) <i class="far fa-comments"></i>
             span.like_comment_text Comment
       else
         .comments_container#comments
@@ -33,9 +33,9 @@ block content
       if locals.authenticated
         div.comment-submit-form
           form.form(action=`/story/${story.id}`  method="POST" id="comment-form")
-            legend.form-legend Submit a Comment
+            legend.form-label Submit a Comment
               div
                 input(type="hidden" value= locals.username name="username" id='username')
               div
                 textarea(name="comment" id="commentField" rows="10" cols="40")
-              button.button(type="button" id="comment-submission") Submit
+              button.button(type="submit" id="comment-submission") Submit
