@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/models')
-const { Story, Category, User, Comment } = db
+const { Story, Category, User, Comment, UserLikedStory } = db
 const {asyncHandler} = require('../utils.js')
 const { Sequelize } = require('../db/models');
 
@@ -39,6 +39,7 @@ router.get('/', asyncHandler(async(req, res, next) =>{
 // // one story 
 router.get('/:id', asyncHandler(async(req, res, next) =>{
     const storyId = parseInt(req.params.id, 10);
+    const likeCount =  await UserLikedStory.count({where: {storyId}})
     const story = await Story.findByPk(storyId);
     const categories = await Category.findAll();
     const comments = await Comment.findAll({
@@ -46,7 +47,7 @@ router.get('/:id', asyncHandler(async(req, res, next) =>{
             storyId
         },
     });
-    res.render('story', {story, categories, comments});
+    res.render('story', {story, categories, comments, likeCount});
 }))
 
 // Get each category
@@ -62,8 +63,13 @@ router.get('/categories/:id/stories', asyncHandler(async(req, res, next) =>{
     const stories = await Category.findByPk(id, {
         include: {model: Story}
     }) 
-    console.log(stories.Stories)
-    res.render("category", {stories: stories.Stories})
+
+    const comments = await Comment.findAll({
+        where: {
+            storyId: id
+        },
+    });
+    res.render("category", {stories: stories.Stories, comments})
   }))
 
   // Today's Articles - < - DOES NOT WORK /story/recent. only /test/recent
@@ -74,21 +80,29 @@ router.get('/recent', asyncHandler(async(req, res, next) => {
     res.json(story)
 }))
 
-router.put('/:id', asyncHandler(async(req,res,next)=> {
+router.post('/:id/like', asyncHandler(async(req,res,next)=> {
     const storyId = parseInt(req.params.id, 10);
-    const username = locals.username
+    const story = await Story.findByPk(storyId);
+    const categories = await Category.findAll();
+    const username = "demo"
     const user = await User.findOne( {where: {username}})
+    const comments = await Comment.findAll({
+        where: {
+            storyId
+        },
+    });
     const isLiked = await UserLikedStory.findOne({where: {storyId, userId: user.id}})
     if(!isLiked){
         await UserLikedStory.create({
             userId: user.id,
             storyId
         })
-        return await UserLikedStory.count({where: {storyId}})
+        // const likeCount =  await UserLikedStory.count({where: {storyId}})
     } else {
         await UserLikedStory.destroy({ where: {userId: user.id, storyId}})
-        return await UserLikedStory.count({where: {storyId}})
     }
+    const likeCount =  await UserLikedStory.count({where: {storyId}})
+    res.render('story', {story, categories, comments, likeCount})
 }))
 
 router.post('/:id', asyncHandler(async(req,res,next)=> {
@@ -98,6 +112,7 @@ router.post('/:id', asyncHandler(async(req,res,next)=> {
     const username = 'demo'; // hardcoding demo user - come back to select current user
     const user = await User.findOne({ where: {username}}) 
     const {comment} = req.body; // grabbing comment
+    const likeCount =  await UserLikedStory.count({where: {storyId}})
 
     const newComment = await Comment.create({
       comment,
@@ -109,7 +124,7 @@ router.post('/:id', asyncHandler(async(req,res,next)=> {
             storyId
         },
     });
-    res.render('story', {story, categories, comments})
+    res.render('story', {story, categories, comments, likeCount})
 }));
 
 module.exports = router;
