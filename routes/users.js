@@ -7,7 +7,7 @@ const { compileClientWithDependenciesTracked } = require('pug');
 const bcrypt = require('bcryptjs');
 const {loginUser, requireAuth, isAuth, logoutUser} = require('../auth.js')
 const db = require('../db/models')
-const { User, Category, Follower } = db;
+const { User, Category, Follower, Story } = db;
 
 
 const userValidator = [
@@ -167,11 +167,9 @@ router.get('/:id',errorHandler, asyncHandler(async(req, res, next) => {
     })
     likedStories.push(userLikedStories)
   } 
-
-
-
-
-  res.render('userprofile', {followers})
+  
+  const storyArray = likedStories[0][0].Stories
+  res.render('userprofile', {storyArray})
 }));
 
 
