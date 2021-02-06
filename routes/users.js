@@ -7,7 +7,7 @@ const { compileClientWithDependenciesTracked } = require('pug');
 const bcrypt = require('bcryptjs');
 const {loginUser, requireAuth, isAuth, logoutUser} = require('../auth.js')
 const db = require('../db/models')
-const { User, Category } = db;
+const { User, Category, Follower } = db;
 
 
 const userValidator = [
@@ -139,4 +139,40 @@ router.post('/demo', asyncHandler(async(req, res) => {
     res.redirect('/')
   })
 }))
+
+
+router.get('/:id',errorHandler, asyncHandler(async(req, res, next) => {
+  const id = parseInt(req.params.id, 10);
+  const followers = await Follower.findAll({
+    where: {
+      followerId: id
+    },
+  })
+  let followedId =[]
+
+  for (let i =0; i < followers.length; i++) {
+      let oneFollow = followers[i].userId
+      followedId.push(oneFollow)
+  }
+  console.log("where??", followedId)
+
+  let likedStories = []
+
+  for (let j =0; j < followedId.length; j++){
+    const userLikedStories = await User.findAll({
+      where: {
+        id: followedId[j]  
+      },
+      include: Story
+    })
+    likedStories.push(userLikedStories)
+  } 
+
+
+
+
+  res.render('userprofile', {followers})
+}));
+
+
 module.exports = router;
