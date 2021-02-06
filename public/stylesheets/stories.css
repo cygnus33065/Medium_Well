@@ -63,3 +63,9 @@ a {
     display: block;
     text-decoration: none;
 }
+
+.user-profile-title{
+    font-size: 40px;
+    margin: 10px;
+    padding: 10px;
+}

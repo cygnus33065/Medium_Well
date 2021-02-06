@@ -1,9 +1,17 @@
 extends layout
 append head
-  link(rel='stylesheet' href='/stylesheets/individualStory.css')
+  link(rel='stylesheet' href='/stylesheets/stories.css')
   link(rel='stylesheet' href='/stylesheets/layout.css')
   script(src='../public/javascripts/comment.js')
 block content
+  div.container
+  div.content
     .user-profile
-        h3.user-profile-title= locals.username
-    
+        h3.user-profile-title= `${locals.username}'s profile`
+    each story in storyArray
+      a(href=`/story/${story.id}`)
+        div.preview-story
+          div.story-text
+            h4.preview-story-title= story.title
+            p.preview-story-desc= story.preview
+          img.preview-story-img(src= story.imgLink)

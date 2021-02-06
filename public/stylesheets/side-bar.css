@@ -12,7 +12,6 @@
     margin: 8px;
     padding: 10px;
     box-shadow: 3px 3px 5px #e8e8e8;
-    overflow: scroll;
 
 }
 
@@ -31,7 +30,6 @@
     flex-wrap:wrap;
     margin-left: auto;
     margin-right: auto;
-    overflow: scroll;
 
 } 
 .side-button {
@@ -40,7 +38,6 @@
     opacity: 0.3;
     margin-left: auto;
     margin-right: auto;
-    overflow: scroll;
 
 }
 
