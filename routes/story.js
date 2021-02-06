@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/models')
-const { Story, Category } = db
+const { Story, Category, User, Comment } = db
 const {asyncHandler} = require('../utils.js')
 const { Sequelize } = require('../db/models');
 
@@ -86,8 +86,8 @@ router.put('/:id', asyncHandler(async(req,res,next)=> {
 }))
 
 router.post('/:id', asyncHandler(async(req,res,next)=> {
-    const storyId = parseInt(req.perams.id, 10);
-    const username = locals.username
+    const storyId = parseInt(req.params.id, 10);
+    const username = 'demo'
     const user = await User.findOne( {where: {username}})
     const {comment} = req.body;
 
@@ -96,6 +96,12 @@ router.post('/:id', asyncHandler(async(req,res,next)=> {
       userId: user.id,
       storyId
     })
-    res.json(newComment)
-}))
+    return await Comment.findAll({
+        where: {
+            storyId
+        },
+        includes: {model: User}
+    });
+}));
+
 module.exports = router;

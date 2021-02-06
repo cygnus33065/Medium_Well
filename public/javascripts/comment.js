@@ -7,19 +7,20 @@ const { json } = require("sequelize/types");
 
 
 
-commentForm.addEventListener('submit', event => {
+commentButton.addEventListener('click', event => {
 
-    event.preventDefault();
+    // event.preventDefault();
 
     const commentForm = document.getElementById('comment-form');
     const username = document.getElementById('username');
-    
-  
+    const commentStuff = document.getElementById('commentField').value
+    const commentDiv = document.querySelector('.comments')
     const formData = new FormData(commentForm);
     const comment = formData.get('commentField');
     const body = { comment , username: username.value };
+    const id = parseInt(req.params.id);
     try {
-        res = await fetch('insert comment route', {
+        res = await fetch(`/story/${id}`, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -30,4 +31,11 @@ commentForm.addEventListener('submit', event => {
     } catch (err) {
         errorHandler(err);
     }
+
+    res.forEach((story) => {
+       const commentCard =  document.createElement("div").classList.add("comment-card")
+        commentCard.innerHTML=`<h4>${story.username}</h4><br><p id="comment-text">${story.comment} </p>`
+        commentDiv.appendChild(commentCard)
+
+    })
 });
