@@ -1,0 +1,9 @@
+extends layout
+append head
+  link(rel='stylesheet' href='/stylesheets/individualStory.css')
+  link(rel='stylesheet' href='/stylesheets/layout.css')
+  script(src='../public/javascripts/comment.js')
+block content
+    .user-profile
+        h3.user-profile-title= locals.username
+    

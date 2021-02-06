@@ -15,7 +15,8 @@ html
             img.header-logo(src="https://i.ibb.co/K6Bx5zt/mediumwelllogo.png")
         if locals.authenticated
           div.message-header.fade-in
-            h3 Hello #{locals.username}
+            a(href=`/users/${locals.userId}`)
+              h3.message-header.fade-in Hello #{locals.username}
           div.user-auth-header
             form(action='/users/logout' method='post')
               button.button(type='submit') Log Out

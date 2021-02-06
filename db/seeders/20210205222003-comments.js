@@ -8,7 +8,7 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkInsert('People', [
+      return queryInterface.bulkInsert('Comments', [
         {comment: 'This is better than Recursion', userId:2, storyId:3, createdAt: new Date(), updatedAt: new Date()},
         {comment: 'BRRRRRRRR!', userId:2, storyId:3, createdAt: new Date(), updatedAt: new Date()},
         {comment: 'I am rooting for the robot!!!', userId:5, storyId:1, createdAt: new Date(), updatedAt: new Date()},
@@ -37,6 +37,6 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkDelete('People', null, {});
+      return queryInterface.bulkDelete('Comments', null, {});
   }
 };
