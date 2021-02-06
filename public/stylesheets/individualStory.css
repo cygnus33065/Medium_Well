@@ -51,10 +51,15 @@
 
 }
 .comments {
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 1px solid whitesmoke;
+    display: flex;
+    width: 100%;
 
 }
 .comment-card { 
-    border: 1px solid whitesmoke;
+
 }
 
 
