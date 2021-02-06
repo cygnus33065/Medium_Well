@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/models')
-const { Story, Category } = db
+const { Story, Category, User, Comment } = db
 const {asyncHandler} = require('../utils.js')
 const { Sequelize } = require('../db/models');
 
@@ -40,7 +40,9 @@ router.get('/', asyncHandler(async(req, res, next) =>{
 router.get('/:id', asyncHandler(async(req, res, next) =>{
     const id = parseInt(req.params.id, 10)
     const story = await Story.findByPk(id)
-    res.json(story);
+    // res.json(story)
+    const categories = await Category.findAll();
+    res.render('story', {story, categories});
 }))
 
 // Get each category
@@ -86,8 +88,8 @@ router.put('/:id', asyncHandler(async(req,res,next)=> {
 }))
 
 router.post('/:id', asyncHandler(async(req,res,next)=> {
-    const storyId = parseInt(req.perams.id, 10);
-    const username = locals.username
+    const storyId = parseInt(req.params.id, 10);
+    const username = 'demo'
     const user = await User.findOne( {where: {username}})
     const {comment} = req.body;
 
@@ -96,6 +98,14 @@ router.post('/:id', asyncHandler(async(req,res,next)=> {
       userId: user.id,
       storyId
     })
-    res.json(newComment)
-}))
+    const IdComments = await Comment.findAll({
+        where: {
+            storyId
+        },
+    });
+    console.log(IdComments)
+    // res.render('story', {IdComments})
+    // return IdComments;
+}));
+
 module.exports = router;

@@ -7,7 +7,7 @@ const { Sequelize } = require('../db/models');
 
 router.put('/:id', asyncHandler (async(req, res) =>{
     const commentId = parseInt(req.params.id, 10)
-    const username = locals.username
+    // const username = req.session.auth.userId
     const user = await User.findOne( { where: { username } } )
     const isLiked = await UserLikedComment.findOne({ where: {commentId, userId: user.id}})
     if(!isLiked){

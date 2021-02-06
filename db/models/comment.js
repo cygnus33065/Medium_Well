@@ -6,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     storyId: DataTypes.INTEGER
   }, {});
   Comment.associate = function(models) {
-    const columnMapping = {through: 'UserLikedComment',
-    // This is the model name referencing thejoin table.
-    otherKey: 'userId',
-    foreignKey: 'commentId'}
-    // Comment.belongsToMany(models.User, columnMapping);
+      Comment.belongsTo(models.User, {foreignKey: "userId"})
+  //   const columnMapping = {through: 'UserLikedComment',
+  //   otherKey: 'userId',
+  //   foreignKey: 'commentId'}
+  //   Comment.belongsToMany(models.User, columnMapping);
   };
 
   return Comment;
