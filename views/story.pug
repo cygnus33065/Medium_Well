@@ -25,9 +25,9 @@ block content
             <i class="fas fa-comment-slash"></i>
               span &nbsp; Please login to comment.
       .likes_container#likes
-        form(action="/" method="PUT")
+        form(action=`/story/${story.id}/like` method="POST")
           button.bacon-button(type=button) <i class="fas fa-bacon"></i>
-          span.like_comment_text 1,254,555
+          span.like_comment_text= likeCount
     div.comments-section
       each comment in comments
         div.comments
