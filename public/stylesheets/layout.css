@@ -1,9 +1,10 @@
 body {
-    background-color:white;
+    background-color: black;
 }
 
 .container {
     display: grid;
+    margin: 0px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
     'header header header'
