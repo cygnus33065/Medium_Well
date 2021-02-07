@@ -97,7 +97,6 @@ router.post('/:id/like', asyncHandler(async(req,res,next)=> {
             userId: user.id,
             storyId
         })
-        // const likeCount =  await UserLikedStory.count({where: {storyId}})
     } else {
         await UserLikedStory.destroy({ where: {userId: user.id, storyId}})
     }
