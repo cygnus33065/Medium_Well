@@ -48,7 +48,7 @@
 .preview-story-img {
     align-items: flex-end;
     width: 172px;
-    height: 129px;
+    object-fit:contain;
     order: 1;
     padding: 5px;
 
