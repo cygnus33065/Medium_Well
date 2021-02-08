@@ -19,6 +19,10 @@ module.exports = {
         {storyId: 4, categoryId: 1, createdAt: new Date(), updatedAt: new Date()},
         {storyId: 1, categoryId: 7, createdAt: new Date(), updatedAt: new Date()},
         {storyId: 2, categoryId: 3, createdAt: new Date(), updatedAt: new Date()},
+        {storyId: 5, categoryId: 7, createdAt: new Date(), updatedAt: new Date()},
+        {storyId: 6, categoryId: 7, createdAt: new Date(), updatedAt: new Date()},
+        {storyId: 7, categoryId: 2, createdAt: new Date(), updatedAt: new Date()},
+        {storyId: 8, categoryId: 3, createdAt: new Date(), updatedAt: new Date()},
       ], {});
     
   },
