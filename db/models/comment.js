@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     storyId: DataTypes.INTEGER
   }, {});
   Comment.associate = function(models) {
-      Comment.belongsTo(models.User, {foreignKey: "userId"})
+      // Comment.belongsTo(models.User, {foreignKey: "userId"})
   //   const columnMapping = {through: 'UserLikedComment',
   //   otherKey: 'userId',
   //   foreignKey: 'commentId'}

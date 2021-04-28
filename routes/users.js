@@ -61,8 +61,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/signup', csrfProtection, asyncHandler(async(req, res, next) => {
-  const categories = await Category.findAll();
-  res.render('signup', {categories, csrfToken : req.csrfToken()});
+  // const categories = await Category.findAll();
+  // res.render('signup', {categories, csrfToken : req.csrfToken()});
+  res.render('signup', { csrfToken : req.csrfToken()});
 }))
 
 router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler(async(req, res) => {
@@ -91,8 +92,9 @@ router.post('/signup', csrfProtection, userValidator, errorHandler, asyncHandler
 
 
 router.get('/login', csrfProtection, errorHandler, asyncHandler(async(req, res, next) =>{
-  const categories = await Category.findAll();
-  res.render('login', {categories, csrfToken : req.csrfToken()})
+  // const categories = await Category.findAll();
+  // res.render('login', {categories, csrfToken : req.csrfToken()})
+  res.render('login', {csrfToken : req.csrfToken()})
 }))
 
 router.post('/login', isAuth, csrfProtection, loginValidator, errorHandler, asyncHandler(async(req, res, next) => {
