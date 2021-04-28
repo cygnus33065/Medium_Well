@@ -67,8 +67,9 @@ body {
     background-color: white;
     display: flex;
     justify-content: left;
-    height: 20px;
-    width: 20%;
+    /* hiding for now */
+    height: 0px;
+    width: 0px;
     font-size: 12px;
     color: grey;
     flex-direction: row;

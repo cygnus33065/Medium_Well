@@ -29,21 +29,15 @@ html
               button.button(type='submit') Create Account
       block content
       div.side-bar
-        h3.side-bar-title BROWSE TOPICS
+        h3.side-bar-title TOPICS TO FOLLOW
         div.side-button-container
-          a.side-button(href="/story/categories/1/stories") 
-            i(class="fas fa-music")
-          a.side-button(href="/story/categories/2/stories") 
-            i(class="fas fa-tv")
-          a.side-button(href="/story/categories/3/stories") 
-            i(class="fas fa-film")
-          a.side-button(href="/story/categories/4/stories") 
-            i(class="fas fa-user-secret")
-          a.side-button(href="/story/categories/5/stories") 
-            i(class="fas fa-laptop-code")
-          a.side-button(href="/story/categories/6/stories") 
-            i(class="fas fa-wifi")
-          a.side-button(href="/story/categories/7/stories") 
-            i(class="fas fa-hamburger")
+          div.side-button-card
+            a.side-button-cat(href="/story/categories/1/stories") Music
+            button.follow-button Follow
+        a.side-button(href="/story/categories/2/stories") 
+          i(class="fas fa-tv")
+        a.side-button(href="/story/categories/3/stories") 
+          i(class="fas fa-film")
+        
       div.footer
         p.footer-text About&nbsp;&nbsp;&nbsp;Help&nbsp;&nbsp;&nbsp;Careers&nbsp;&nbsp;&nbsp;Status
