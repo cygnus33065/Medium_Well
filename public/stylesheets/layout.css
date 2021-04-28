@@ -16,20 +16,23 @@ body {
 }
 .header {
     grid-area: header;
-    width: 100%;
+    width: 1192px;
     height: 150px;
     display: flex;
-    justify-content: space-around;
+    justify-self: center;
+    justify-content: space-between;
     background-color:#FFFFFF;
 }
 .header-logo {
-    height: 120px;
-    width: auto;
+    height: 80px;
+    width: 300px;
     justify-self: left;
 }
 
 .user-auth-header {
     align-self: center;
+    display: flex;
+    flex-direction: row;
 }
 
 .logo-header {
@@ -94,6 +97,38 @@ body {
     transition: 0.3s;
 
 }
+
+.signinbutton {
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    color: black;
+    justify-content: center;
+    opacity: 0.8;
+    transition: 0.3s;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.getstartedbutton {
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:1em;
+    border-color: rgba(25, 25, 25, 1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: black;;
+    color: #FFFFFF;
+    justify-content: center;
+    opacity: 0.8;
+    transition: 0.3s;
+    line-height: 20px;
+    font-size: 14px;
+}
+
 .button-container {
     text-align: center;
 }

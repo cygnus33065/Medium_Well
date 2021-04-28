@@ -11,7 +11,7 @@ html
       div.header
         div.logo-header
           a(href="/")
-            img.header-logo(src="https://i.ibb.co/429Q48T/Screen-Shot-2021-04-28-at-1-54-59-PM.png" alt="Medium Well Logo")
+            img.header-logo(src="https://i.ibb.co/YX8xfBY/Screen-Shot-2021-04-28-at-4-03-19-PM.png" alt="Medium Well Logo")
         if locals.authenticated
           div.message-header.fade-in
             a(href=`/users/${locals.userId}`)
@@ -24,9 +24,9 @@ html
             h3 Welcome
           div.user-auth-header
             form(action='/users/login' method='get')
-              button.button(type='submit') Log In
+              button.signinbutton(type='submit') Sign In
             form(action='/users/signup' method='get')
-              button.button(type='submit') Create Account
+              button.getstartedbutton(type='submit') Get Started
       block content
       div.side-bar
         h3.side-bar-title BROWSE TOPICS
