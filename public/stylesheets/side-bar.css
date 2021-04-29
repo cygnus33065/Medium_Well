@@ -1,8 +1,9 @@
-@media only screen and (max-width: 899px){
+/* @media only screen and (max-width: 899px){
     .side-bar{
         height: 0px;
         width: 0px;
         transition: .02s;
+        opacity: 0;
     }
 }
 @media only screen and (min-width: 900px ){
@@ -13,15 +14,15 @@
             flex-direction: column;
             /* align-items: flex-end; */
             justify-content: center;
-            height: auto;
+            height: 300px;
             width: 20%;
-            position: fixed;
-            right: 32px;
-            bottom: 32px;
+            overflow:hidden;
+            position: sticky;
+
+            top: -1000px;
             margin: 8px;
             padding: 32px;
             transition: .02s;
-
 
         }
 
@@ -104,4 +105,4 @@
             margin-left: auto;
             margin-right: auto;
         }
-}
+} */

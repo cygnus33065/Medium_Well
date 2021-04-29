@@ -1,7 +1,8 @@
 @import 'layout.css';
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 @import url(//db.onlinewebfonts.com/c/30a71dcf9a1c39558ca4e97c92a4b2fa?family=Noe+Display+Bold);
-.preview-story {
+ .preview-story {
+    grid-area: content;
     /* border: 1px solid #b19cd9; */
     background-color: white;
     /* width: 650px;
@@ -12,7 +13,7 @@
     margin-right: auto;
     padding: 5px;
     display: flex;
-    width: 900px;
+    /* width: 2fr; */
     height: auto;
     /* grid-column-start: 1;
     grid-column-end: 3; */
@@ -91,7 +92,8 @@ a {
     /* position: fixed; */
     left: 0;
     margin: 0;
-    margin-bottom: 100px
+    margin-bottom: 100px;
+    z-index: 2;
 }
 
 .page-header-title{
@@ -137,4 +139,4 @@ a {
     margin-left: 300px;
     margin-top: 10px;
     cursor: pointer;
-}
+} 
