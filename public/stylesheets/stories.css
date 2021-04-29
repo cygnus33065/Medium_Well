@@ -1,26 +1,30 @@
 @import 'layout.css';
-
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url(//db.onlinewebfonts.com/c/30a71dcf9a1c39558ca4e97c92a4b2fa?family=Noe+Display+Bold);
 .preview-story {
     /* border: 1px solid #b19cd9; */
     background-color: white;
     /* width: 650px;
     height: 129px; */
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
     display: flex;
-
-
+    width: 900px;
+    height: auto;
+    /* grid-column-start: 1;
+    grid-column-end: 3; */
+    margin-left: 300px;
 }
 
 .preview-story:hover {
     box-shadow: 3px 3px 5px #e8e8e8;
     background-color: white;
     /* width: 80%; */
-    margin-bottom: 10px;
-    margin-left: auto;
+    margin-bottom: 50px;
+    margin-left: 300px;
     margin-right: auto;
     padding: 5px;
     display: flex;
@@ -29,11 +33,14 @@
 }
 .preview-story-title {
     margin-bottom: 0px;
+    margin-top: 0px;
     justify-self: flex-start;
     padding: 5px;
     font-size: 20px;
     line-height: 25px;
     flex-wrap: wrap;
+    font-family: Raleway;
+    font-size: 30px;
     /* font-family: Georgia, 'Times New Roman', Times, serif; */
 
 }
@@ -41,21 +48,22 @@
     margin: 0px;
     align-self: flex-end;
     padding: 5px;
-    color: darkgrey;
+    color: rgb(85, 84, 84);
     font-size: 15px;
 }
 
 .preview-story-img {
     align-items: flex-end;
-    width: 172px;
+    width: 200px;
+    height: auto;
     object-fit:contain;
     order: 1;
-    padding: 5px;
+    padding: 0px;
 
 }
 
 .preview-story-date {
-    color: white;
+    color: rgb(85, 84, 84);
     padding: 5px;
 }
 
@@ -68,4 +76,65 @@ a {
     font-size: 40px;
     margin: 10px;
     padding: 10px;
+}
+
+.preview-story-author{
+    margin: 0px;
+    font-family: Raleway;
+    margin-left: 5px;
+}
+
+.page-header{
+    background-color: rgb(238, 151, 255);
+    width: 100%;
+    height: 450px;
+    /* position: fixed; */
+    left: 0;
+    margin: 0;
+    margin-bottom: 100px
+}
+
+.page-header-title{
+    margin: 0;
+    font-family: Noe;
+    font-size: 80px;
+    font-weight:lighter;
+    margin-left: 300px;
+    padding-top: 50px;
+    width: 600px;
+}
+
+.page-header-description{
+    font-family: Noe;
+    margin-left: 300px;
+    padding-top: 30px;
+    width: 600px;
+    font-size: 25px;
+}
+
+.page-header-img{
+    position: absolute;
+    right: 300px;
+    top: 200px;
+    height: 300px;
+}
+
+.page-container{
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.page-header-button{
+    outline: none;
+    border: 1px solid black;
+    background-color: rgb(238, 151, 255);
+    font-size: 20px;
+    font-family: Noe;
+    border-radius: 50px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 300px;
+    margin-top: 10px;
+    cursor: pointer;
 }
