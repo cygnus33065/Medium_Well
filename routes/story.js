@@ -122,7 +122,7 @@ router.post('/:id', asyncHandler(async(req,res,next)=> {
       storyId
     })
 
-    return res.json({newComment})
+    return res.json(newComment)
     // const comments = await Comment.findAll({
     //     where: {
     //         storyId
