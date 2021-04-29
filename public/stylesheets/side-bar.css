@@ -17,7 +17,7 @@
             width: 20%;
             position: fixed;
             right: 32px;
-            top: 180px;
+            bottom: 32px;
             margin: 8px;
             padding: 32px;
             transition: .02s;
@@ -64,13 +64,13 @@
 
         .side-button-cat {
             font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;            vertical-align: super;
-            font-size: 18px;
-            font-weight: 550;
+            font-size: 16px;
+            font-weight: 500;
         }
 
         .follow-button {
             justify-self: flex-end;
-            background-color: #b19cd9;
+            background-color: rgba(26, 137, 23, 1);
             outline: none;
             border: none;
             border-radius: 99em;
