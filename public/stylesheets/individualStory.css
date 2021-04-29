@@ -33,7 +33,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.likes_and_comments i {
+.likes_and_comments button {
     font-size: 20px;
 }
 
@@ -58,7 +58,7 @@
     width: 100%;
 
 }
-.comment-card { 
+.comment-card {
 
 }
 
