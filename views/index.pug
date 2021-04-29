@@ -3,26 +3,51 @@ extends layout
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/layout.css")
-  link(rel="stylesheet" href="/stylesheets/stories.css")
+  //- link(rel="stylesheet" href="/stylesheets/stories.css")
+  //- link(rel="stylesheet" href="/stylesheets/side-bar.css")
+
   //- add page specific js
 
 block content
-  div.page-container
-    div.page-header
+  div.page-header
+    div.page-header-text
       h1.page-header-title Where good ideas find you
       p.page-header-description Read and share new perspectives on just about any topic. Everyone's welcome.
       form(action='/users/signup' method='get')
               button.page-header-button(type='submit') Get Started
+    div.page-header-img
       img.page-header-img(src= "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/11368/cow-cattle-animal-clipart-md.png")
+  div.page-container
     div.content
       each story in stories
-        a(href=`/story/${story.id}`)
-          div.preview-story
+        div.preview-story
+          a(href=`/story/${story.id}`)
             div.story-text
               p.preview-story-author= story.author
               h1.preview-story-title= story.title
               p.preview-story-desc= story.preview
             img.preview-story-img(src= story.imgLink)
+        
+  div.side-bar
+    h3.side-bar-title TOPICS TO FOLLOW
+    div.side-button-container
+      div.side-button-card
+        a.side-button-cat(href="/story/categories/1/stories") Entertainment
+        button.follow-button Follow
+      div.side-button-card
+        a.side-button-cat(href="/story/categories/2/stories") Software
+        button.follow-button Follow
+      div.side-button-card
+        a.side-button-cat(href="/story/categories/4/stories") Food and Drink
+        button.follow-button Follow
+      div.side-button-card
+        a.side-button-cat(href="/story/categories/5/stories") Film
+        button.follow-button Follow
+      div.side-button-card
+        a.side-button-cat(href="/story/categories/6/stories") Money
+        button.follow-button Follow
+    div.footer
+      p.footer-text About&nbsp;&nbsp;&nbsp;Help&nbsp;&nbsp;&nbsp;Careers&nbsp;&nbsp;&nbsp;Status
       //- div.preview-story
       //-   div.story-text
       //-     h4.preview-story-title Exciting Story Headline

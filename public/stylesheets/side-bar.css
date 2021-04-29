@@ -1,4 +1,4 @@
-@media only screen and (max-width: 899px){
+/* @media only screen and (max-width: 899px){
     .side-bar{
         height: 0px;
         width: 0px;
@@ -17,15 +17,12 @@
             height: 300px;
             width: 20%;
             overflow:hidden;
-            position: fixed;
-            right: 32px;
-            bottom: 0px;
+            position: sticky;
+
+            top: -1000px;
             margin: 8px;
             padding: 32px;
             transition: .02s;
-            z-index: 1;
-            
-
 
         }
 
@@ -108,4 +105,4 @@
             margin-left: auto;
             margin-right: auto;
         }
-}
+} */

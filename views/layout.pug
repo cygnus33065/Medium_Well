@@ -7,7 +7,6 @@ html
         link(rel='stylesheet' href='/stylesheets/side-bar.css')
         script(src="https://kit.fontawesome.com/59b37e5601.js" crossorigin="anonymous")
 
-  body.container
       div.header
         div.logo-header
           a(href="/")
@@ -27,25 +26,26 @@ html
               button.signinbutton(type='submit') Sign In
             form(action='/users/signup' method='get')
               button.getstartedbutton(type='submit') Get Started
-      block content
-      div.side-bar
-        h3.side-bar-title TOPICS TO FOLLOW
-        div.side-button-container
-          div.side-button-card
-            a.side-button-cat(href="/story/categories/1/stories") Entertainment
-            button.follow-button Follow
-          div.side-button-card
-            a.side-button-cat(href="/story/categories/2/stories") Software
-            button.follow-button Follow
-          div.side-button-card
-            a.side-button-cat(href="/story/categories/4/stories") Food and Drink
-            button.follow-button Follow
-          div.side-button-card
-            a.side-button-cat(href="/story/categories/5/stories") Film
-            button.follow-button Follow
-          div.side-button-card
-            a.side-button-cat(href="/story/categories/6/stories") Money
-            button.follow-button Follow
-        
-      div.footer
-        p.footer-text About&nbsp;&nbsp;&nbsp;Help&nbsp;&nbsp;&nbsp;Careers&nbsp;&nbsp;&nbsp;Status
+  body.container
+  block content
+        //- div.side-bar
+        //-   h3.side-bar-title TOPICS TO FOLLOW
+        //-   div.side-button-container
+        //-     div.side-button-card
+        //-       a.side-button-cat(href="/story/categories/1/stories") Entertainment
+        //-       button.follow-button Follow
+        //-     div.side-button-card
+        //-       a.side-button-cat(href="/story/categories/2/stories") Software
+        //-       button.follow-button Follow
+        //-     div.side-button-card
+        //-       a.side-button-cat(href="/story/categories/4/stories") Food and Drink
+        //-       button.follow-button Follow
+        //-     div.side-button-card
+        //-       a.side-button-cat(href="/story/categories/5/stories") Film
+        //-       button.follow-button Follow
+        //-     div.side-button-card
+        //-       a.side-button-cat(href="/story/categories/6/stories") Money
+        //-       button.follow-button Follow
+          
+        //- div.footer
+        //-   p.footer-text About&nbsp;&nbsp;&nbsp;Help&nbsp;&nbsp;&nbsp;Careers&nbsp;&nbsp;&nbsp;Status
