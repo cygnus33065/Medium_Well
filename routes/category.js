@@ -7,10 +7,7 @@ const { Sequelize } = require('../db/models');
 
 
 router.get(`/:id/followed`, asyncHandler(async(req, res, next) => {
-    // const username = req.locals.username
-
-    const userId = parseInt(req.params.id, 10);
-   
+    const userId = parseInt(req.params.id, 10);   
     const followed = await CategoryFollow.findAll({
         where: {
             userId,
@@ -20,6 +17,10 @@ router.get(`/:id/followed`, asyncHandler(async(req, res, next) => {
     return res.json(followed)
 }))
 
+router.post(`/:id/followed`, asyncHandler(async(req, res, next) => {
 
+    const userId = parseInt(req.params.id, 10);
+
+}))
 
 module.exports = router;

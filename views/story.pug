@@ -39,7 +39,7 @@ block content
         form.form.comment-form(method='POST' id=story.id)
           legend.form-label Submit a Comment
             div
-              input(type="hidden" value= locals.userId name="userId" id='userId')
+              input(type="hidden" value=locals.userId name="userId" id='userId')
             div
               textarea(name="comment" id="commentField" rows="10" cols="40")
             button.button(type="submit" id='comment-button' ) Submit
