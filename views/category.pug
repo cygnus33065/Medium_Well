@@ -3,17 +3,25 @@ extends layout
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/layout.css")
-  link(rel="stylesheet" href="/stylesheets/stories.css")
+  //- link(rel="stylesheet" href="/stylesheets/stories.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  div.container
-  div.content
-    each story in stories
-      a(href=`/story/${story.id}`)
-        div.preview-story
-          div.story-text
-            h4.preview-story-title= story.title
-            p.preview-story-desc= story.preview
-          img.preview-story-img(src= story.imgLink)
+  div.page-container
+    div.content
+      each story in stories
+        a(href=`/story/${story.id}`)
+          div.preview-story
+            div.story-text
+              h4.preview-story-title= story.title
+              p.preview-story-desc= story.preview
+            img.preview-story-img(src= story.imgLink)
+  div.cate-bar
+    h3.cate-bar-title Category
+    button.cate-follow-button Follow
+    br
+    p.cate-subtitle Follow to see more stories about Money on your homepage and in your Medium Daily Digest
+    br
+    br
+    h3.cate-side-bar-title RELATED TOPICS
