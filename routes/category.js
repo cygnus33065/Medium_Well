@@ -23,4 +23,10 @@ router.post(`/:id/followed`, asyncHandler(async(req, res, next) => {
 
 }))
 
+// get all
+router.get('/', asyncHandler(async(req, res, next) => {
+    const categories = await Category.findAll();
+    return res.json(categories)
+}))
+
 module.exports = router;

@@ -64,12 +64,14 @@ router.get('/categories/:id/stories', asyncHandler(async(req, res, next) =>{
         include: {model: Story}
     })
 
+    const categories = await Category.findAll()
+
     const comments = await Comment.findAll({
         where: {
             storyId: id
-        },
+        },  
     });
-    res.render("category", {stories: stories.Stories, comments})
+    res.render("category", {stories: stories.Stories, comments, categories})
   }))
 
   // Today's Articles - < - DOES NOT WORK /story/recent. only /test/recent

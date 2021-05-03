@@ -21,7 +21,10 @@ block content
     h3.cate-bar-title Category
     button.cate-follow-button Follow
     br
-    p.cate-subtitle Follow to see more stories about Money on your homepage and in your Medium Daily Digest
+    p.cate-subtitle Follow to see more stories about this category on your homepage and in your Medium Daily Digest
     br
     br
     h3.cate-side-bar-title RELATED TOPICS
+      each category in categories
+        p= category.name
+    
