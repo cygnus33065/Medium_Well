@@ -41,6 +41,16 @@ module.exports = (sequelize, DataTypes) => {
       as: "Followers"
     }
     User.belongsToMany(models.User, columnMappingFollower)
+
+
+
+     const columnMappingCatFollow = {
+      through: "CategoryFollow",
+      otherKey: "catId",
+      foreignKey: "userId",
+      
+    }
+    User.belongsToMany(models.Category, columnMappingCatFollow)
   };
 
   return User;

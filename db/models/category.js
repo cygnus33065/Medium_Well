@@ -9,7 +9,17 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'storyId',
       foreignKey: 'categoryId'
     }
+
+    const FollowCategoryMapping = {
+      through: 'CategoryFollow',
+      otherKey: 'userId',
+      foreignKey: 'catId'
+      }
+    
+
     Category.belongsToMany(models.Story, columnMappingCategory)
+    Category.belongsToMany(models.User, FollowCategoryMapping)
+
   };
   return Category;
 };
