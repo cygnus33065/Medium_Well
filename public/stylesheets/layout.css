@@ -497,6 +497,8 @@ a {
         right: 0px;
 
     }
+
+
     .cate-bar {
       grid-area: side-bar;
       height: 0px;
@@ -519,13 +521,25 @@ a {
             overflow:hidden;
             position: sticky;
             right: 32px;
-            top: 632px;
+            top: 32px;
             
             /* bottom: 32px; */
             /* margin: 8px; */
             padding: 32px;
             transition: .02s;
             max-width: 350px;
+            
+
+
+        }
+
+        .side-container  {
+          display: flex;
+          flex-direction: column;
+          grid-area: side-bar;
+          margin-top: 92px;
+          padding: 10px;
+          /* position: fixed; */
 
 
         }
