@@ -69,7 +69,7 @@ router.get('/categories/:id/stories', asyncHandler(async(req, res, next) =>{
     const comments = await Comment.findAll({
         where: {
             storyId: id
-        },  
+        },
     });
     res.render("category", {stories: stories.Stories, comments, categories})
   }))
@@ -115,12 +115,12 @@ router.post('/:id', asyncHandler(async(req,res,next)=> {
     const categories = await Category.findAll();
     const username = 'demo'; // hardcoding demo user - come back to select current user
     const user = await User.findOne({ where: {username}})
-    const {comment} = req.body; // grabbing comment
-    const likeCount =  await UserLikedStory.count({where: {storyId}})
+    const {comment, userId} = req.body; // grabbing comment
+    // const likeCount =  await UserLikedStory.count({where: {storyId}})
 
     const newComment = await Comment.create({
       comment,
-      userId: user.id,
+      userId,
       storyId
     })
 
