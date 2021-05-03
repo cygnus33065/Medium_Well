@@ -5,6 +5,7 @@ append head
   link(rel="stylesheet" href="/stylesheets/layout.css")
   //- link(rel="stylesheet" href="/stylesheets/stories.css")
   //- link(rel="stylesheet" href="/stylesheets/side-bar.css")
+  script(src='/javascripts/category.js')
 
   //- add page specific js
 
@@ -27,26 +28,25 @@ block content
               h1.preview-story-title= story.title
               p.preview-story-desc= story.preview
             img.preview-story-img(src= story.imgLink)
-  div.side-container      
+  div.side-container
     div.side-bar
+      input(type="hidden" value=locals.userId name="userId" id='userId')
       h3.side-bar-title TOPICS TO FOLLOW
       div.side-button-container
         div.side-button-card
           a.side-button-cat(href="/story/categories/1/stories") Entertainment
-          button.follow-button Follow
+          button.follow-button(type="button" id=1) Follow
         div.side-button-card
           a.side-button-cat(href="/story/categories/2/stories") Software
-          button.follow-button Follow
+          button.follow-button(type="button" id=2) Follow
         div.side-button-card
           a.side-button-cat(href="/story/categories/4/stories") Food and Drink
-          button.follow-button Follow
+          button.follow-button(type="button" id=4) Follow
         div.side-button-card
           a.side-button-cat(href="/story/categories/5/stories") Film
-          button.follow-button Follow
+          button.follow-button(type="button" id=5) Follow
         div.side-button-card
           a.side-button-cat(href="/story/categories/6/stories") Money
-          button.follow-button Follow
+          button.follow-button(type="button" id=6) Follow
       div.footer
         p.footer-text About&nbsp;&nbsp;&nbsp;Help&nbsp;&nbsp;&nbsp;Careers&nbsp;&nbsp;&nbsp;Status
-
-        

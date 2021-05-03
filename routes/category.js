@@ -7,7 +7,7 @@ const { Sequelize } = require('../db/models');
 
 
 router.get(`/:id/followed`, asyncHandler(async(req, res, next) => {
-    const userId = parseInt(req.params.id, 10);   
+    const userId = parseInt(req.params.id, 10);
     const followed = await CategoryFollow.findAll({
         where: {
             userId,
@@ -18,9 +18,22 @@ router.get(`/:id/followed`, asyncHandler(async(req, res, next) => {
 }))
 
 router.post(`/:id/followed`, asyncHandler(async(req, res, next) => {
+    const {userId, catId} = req.body
+    const isFollowed = await CategoryFollow.findOne({where: {userId, catId}})
 
-    const userId = parseInt(req.params.id, 10);
+    if (!isFollowed){
+        await CategoryFollow.create({
+            userId,
+            catId
+        })
 
+    }else {
+        await CategoryFollow.destroy({where: {
+            userId,
+            catId
+        }})
+    }
+    return res.json({isFollowed})
 }))
 
 // get all
